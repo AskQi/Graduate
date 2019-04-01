@@ -1,3 +1,6 @@
+clc;
+clear;
+
 igsfile = 'igesToolBox/IGESfiles/point.igs';
 
 fprintf("ÎÄ¼şÃû£º%s\n",igsfile);
