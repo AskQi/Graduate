@@ -1,4 +1,4 @@
-igsfile = 'IGESfiles/point.igs';
+igsfile = 'igesToolBox/IGESfiles/point.igs';
 
 fprintf("ÎÄ¼þÃû£º%s\n",igsfile);
 [fid,msg]=fopen(igsfile);
