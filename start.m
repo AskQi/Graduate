@@ -297,6 +297,10 @@ fprintf("\n\n开始绘图\n");
 for j=1:length(ParameterData)
     thisEntiall = ParameterData{j};
     type = thisEntiall.type;
+    if thisEntiall.well == 0
+        fprintf("该类型暂时无法处理：%d\n",type);
+        continue;
+    end
     switch type
         case 314 % 颜色定义（Color Definition）
             fprintf("");
@@ -305,10 +309,7 @@ for j=1:length(ParameterData)
             % 缺省参数表表达式：
             % C(t) = P1 + t*(P2-P1) , t∈[0,1]
             fprintf("类型：%s(%d)\n",thisEntiall.name,thisEntiall.type);
-            if thisEntiall.well == 0
-                fprintf("该类型暂时无法处理\n");
-                break;
-            end
+            
             p1=thisEntiall.p1;
             p2=thisEntiall.p2;
             fprintf("p1:%d,%d,%d\np2:%d,%d,%d\nlength:%d\n",p1,p2,thisEntiall.length);
