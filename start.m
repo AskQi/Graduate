@@ -1,7 +1,7 @@
 clc;
 clear;
 
-igsfile = 'igesToolBox/IGESfiles/point.igs';
+igsfile = 'igesToolBox/IGESfiles/line.igs';
 
 fprintf("文件名：%s\n",igsfile);
 [fid,msg]=fopen(igsfile);
@@ -251,7 +251,73 @@ for i=startD:2:endD
             fprintf("type：%d，name：%s\ncc1：%s，cc2：%s，cc3：%s\ncname：%s\n",...
                 ParameterData{entiall}.type,ParameterData{entiall}.name,ParameterData{entiall}.cc1,...
                 ParameterData{entiall}.cc2,ParameterData{entiall}.cc3,ParameterData{entiall}.cname);
+        case 110 % 直线（Line）
+            % 相关资料在国标P85
+            % 缺省参数表表达式：
+            % C(t) = P1 + t*(P2-P1) , t∈[0,1]
+            ParameterData{entiall}.name='直线';
+            ParameterData{entiall}.original=1;
+            p1=Pvec(2:4)';
+            p2=Pvec(5:7)';
+            
+            ParameterData{entiall}.p1=p1;
+            ParameterData{entiall}.x1=p1(1);
+            ParameterData{entiall}.y1=p1(2);
+            ParameterData{entiall}.z1=p1(3);
+            
+            ParameterData{entiall}.p2=p2;
+            ParameterData{entiall}.x2=p2(1);
+            ParameterData{entiall}.y2=p2(2);
+            ParameterData{entiall}.z2=p2(3);
+            
+            ParameterData{entiall}.length=norm(p1-p2);
+            % D部分记录的颜色编号
+            ParameterData{entiall}.clrnmbr=colorNo;
+            ParameterData{entiall}.color=[0,0,0];
+            
+            ParameterData{entiall}.well=true;
+            
+            clear p1 p2
+            
+        case 116 % 点（）
+            % TODO: 完成点的功能
+            % 这里存在问题：使用Inventor始终无法获取点的IGES文件
+        case 406 % 特性实体
+            % TODO:还不知道怎么弄
+            ParameterData{entiall}.name='未处理类型 406';
+            ParameterData{entiall}.unknown=char(Pstr);
+            ParameterData{entiall}.original=1;
+            ParameterData{entiall}.well=false;
     end
 end
 
-
+% 关闭所有图像窗口
+close all;
+fprintf("\n\n开始绘图\n");
+for j=1:length(ParameterData)
+    thisEntiall = ParameterData{j};
+    type = thisEntiall.type;
+    switch type
+        case 314 % 颜色定义（Color Definition）
+            fprintf("");
+        case 110 % 直线（Line）
+            % 相关资料在国标P85
+            % 缺省参数表表达式：
+            % C(t) = P1 + t*(P2-P1) , t∈[0,1]
+            fprintf("类型：%s(%d)\n",thisEntiall.name,thisEntiall.type);
+            if thisEntiall.well == 0
+                fprintf("该类型暂时无法处理\n");
+                break;
+            end
+            p1=thisEntiall.p1;
+            p2=thisEntiall.p2;
+            fprintf("p1:%d,%d,%d\np2:%d,%d,%d\nlength:%d\n",p1,p2,thisEntiall.length);
+            plot3([p1(1) p2(1)],[p1(2) p2(2)],[p1(3) p2(3)]);
+        case 406 % 特性实体
+            % TODO:还不知道怎么弄
+            ParameterData{entiall}.name='未处理类型 406';
+            ParameterData{entiall}.unknown=char(Pstr);
+            ParameterData{entiall}.original=1;
+            ParameterData{entiall}.well=false;
+    end
+end
