@@ -223,6 +223,78 @@ for i=startD:2:endD
     fprintf("=> P部分信息如下：\n");
     % 因为P部分的格式是不固定的，所以要根据不同的元素进行不同的数据解析
     switch type
+        % B-Rep曲线实体
+        case 100 % 圆弧
+        case 102 % 复合曲线
+            ParameterData{entiall}.name='复合曲线';
+            
+            ParameterData{entiall}.n=Pvec(2);
+            ParameterData{entiall}.de=round((Pvec(3:(2+Pvec(2)))+1)/2);
+            
+            ParameterData{entiall}.lengthcnt=zeros(1,Pvec(2));
+            ParameterData{entiall}.length=0;
+            
+            ParameterData{entiall}.clrnmbr=colorNo;
+            ParameterData{entiall}.color=[0,0,0];
+            
+            ParameterData{entiall}.numcrvcnt=zeros(1,Pvec(2));
+            ParameterData{entiall}.numcrv=0;
+            
+            ParameterData{entiall}.well=true;
+        case 104 % 圆锥曲线
+        case 106 % 106/11（2D路径）、106/12（3D路径）、106/63（简单封闭平面曲线）
+        case 110 % 直线
+            % 相关资料在国标P85
+            % 缺省参数表表达式：
+            % C(t) = P1 + t*(P2-P1) , t∈[0,1]
+            ParameterData{entiall}.name='直线';
+            ParameterData{entiall}.original=1;
+            p1=Pvec(2:4)';
+            p2=Pvec(5:7)';
+            
+            ParameterData{entiall}.p1=p1;
+            ParameterData{entiall}.x1=p1(1);
+            ParameterData{entiall}.y1=p1(2);
+            ParameterData{entiall}.z1=p1(3);
+            
+            ParameterData{entiall}.p2=p2;
+            ParameterData{entiall}.x2=p2(1);
+            ParameterData{entiall}.y2=p2(2);
+            ParameterData{entiall}.z2=p2(3);
+            
+            ParameterData{entiall}.length=norm(p1-p2);
+            % D部分记录的颜色编号
+            ParameterData{entiall}.clrnmbr=colorNo;
+            ParameterData{entiall}.color=[0,0,0];
+            
+            ParameterData{entiall}.well=true;
+            
+            clear p1 p2
+        case 112 % 参数样条曲线
+        case 126 % 有理B样条曲线
+        case 130 % 偏置曲线
+            
+            % B-Rep曲面实体
+        case 114 % 参数样条曲面
+        case 118 % 118/1直纹面
+        case 120 % 回转曲面
+        case 122 % 列表柱面
+        case 128 % 有理B样条曲面
+        case 140 % 偏置曲面
+        case 190 % 平面曲面
+        case 192 % 正圆柱曲面
+        case 194 % 正圆锥曲面
+        case 196 % 球面
+        case 198 % 圆环面
+            
+            % 用于B-Rep实体模型的拓扑实体
+        case 186 % 流形实体的B-Rep
+        case 502 % 顶点
+        case 504 % 边
+        case 508 % 环
+        case 510 % 面
+        case 514 % 壳
+            
         case 314 % 颜色定义（Color Definition）
             % 相关说明在V6标准P386
             ParameterData{entiall}.name='颜色';
@@ -251,34 +323,6 @@ for i=startD:2:endD
             fprintf("type：%d，name：%s\ncc1：%s，cc2：%s，cc3：%s\ncname：%s\n",...
                 ParameterData{entiall}.type,ParameterData{entiall}.name,ParameterData{entiall}.cc1,...
                 ParameterData{entiall}.cc2,ParameterData{entiall}.cc3,ParameterData{entiall}.cname);
-        case 110 % 直线（Line）
-            % 相关资料在国标P85
-            % 缺省参数表表达式：
-            % C(t) = P1 + t*(P2-P1) , t∈[0,1]
-            ParameterData{entiall}.name='直线';
-            ParameterData{entiall}.original=1;
-            p1=Pvec(2:4)';
-            p2=Pvec(5:7)';
-            
-            ParameterData{entiall}.p1=p1;
-            ParameterData{entiall}.x1=p1(1);
-            ParameterData{entiall}.y1=p1(2);
-            ParameterData{entiall}.z1=p1(3);
-            
-            ParameterData{entiall}.p2=p2;
-            ParameterData{entiall}.x2=p2(1);
-            ParameterData{entiall}.y2=p2(2);
-            ParameterData{entiall}.z2=p2(3);
-            
-            ParameterData{entiall}.length=norm(p1-p2);
-            % D部分记录的颜色编号
-            ParameterData{entiall}.clrnmbr=colorNo;
-            ParameterData{entiall}.color=[0,0,0];
-            
-            ParameterData{entiall}.well=true;
-            
-            clear p1 p2
-            
         case 116 % 点（）
             % TODO: 完成点的功能
             % 这里存在问题：使用Inventor始终无法获取点的IGES文件
@@ -288,23 +332,31 @@ for i=startD:2:endD
             ParameterData{entiall}.unknown=char(Pstr);
             ParameterData{entiall}.original=1;
             ParameterData{entiall}.well=false;
+        otherwise
+            ParameterData{entiall}.name='未知类型';
+            ParameterData{entiall}.unknown=char(Pstr);
+            ParameterData{entiall}.well=false;
     end
 end
 
 % 关闭所有图像窗口
 close all;
+hold on;
 fprintf("\n\n开始绘图\n");
 for j=1:length(ParameterData)
     thisEntiall = ParameterData{j};
     type = thisEntiall.type;
-    if thisEntiall.well == 0
+    if thisEntiall.well~=true
         fprintf("该类型暂时无法处理：%d\n",type);
         continue;
     end
     switch type
-        case 314 % 颜色定义（Color Definition）
-            fprintf("");
-        case 110 % 直线（Line）
+        % B-Rep曲线实体
+        case 100 % 圆弧
+        case 102 % 复合曲线
+        case 104 % 圆锥曲线
+        case 106 % 106/11（2D路径）、106/12（3D路径）、106/63（简单封闭平面曲线）
+        case 110 % 直线
             % 相关资料在国标P85
             % 缺省参数表表达式：
             % C(t) = P1 + t*(P2-P1) , t∈[0,1]
@@ -314,11 +366,32 @@ for j=1:length(ParameterData)
             p2=thisEntiall.p2;
             fprintf("p1:%d,%d,%d\np2:%d,%d,%d\nlength:%d\n",p1,p2,thisEntiall.length);
             plot3([p1(1) p2(1)],[p1(2) p2(2)],[p1(3) p2(3)]);
+        case 112 % 参数样条曲线
+        case 126 % 有理B样条曲线
+        case 130 % 偏置曲线
+            % B-Rep曲面实体
+        case 114 % 参数样条曲面
+        case 118 % 118/1直纹面
+        case 120 %
+        case 122 %
+        case 128 %
+        case 140 %
+        case 190 %
+        case 192 %
+        case 194 %
+        case 196 %
+        case 198 %
+            % 用于B-Rep实体模型的拓扑实体
+        case 186 %
+        case 502 %
+        case 504 %
+        case 508 %
+        case 510 %
+        case 514 %
+            
+        case 314 % 颜色定义（Color Definition）
+            fprintf("不处理颜色实体(314)\n");
         case 406 % 特性实体
             % TODO:还不知道怎么弄
-            ParameterData{entiall}.name='未处理类型 406';
-            ParameterData{entiall}.unknown=char(Pstr);
-            ParameterData{entiall}.original=1;
-            ParameterData{entiall}.well=false;
     end
 end
