@@ -1,7 +1,7 @@
 clc;
 clear;
 
-igsfile = 'igesToolBox/IGESfiles/line.igs';
+igsfile = 'IGESfiles/line.igs';
 
 fprintf("ÎÄ¼þÃû£º%s\n",igsfile);
 [fid,msg]=fopen(igsfile);
