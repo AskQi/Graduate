@@ -1,7 +1,7 @@
 clc;
 clear;
 global support_read_fcn_type support_read_fcns support_drawing_fcn_type...
-    support_drawing_fcns defaultColor
+    support_drawing_fcns defaultColor transformationExists
 igsfile = 'IGESfiles/circular_arc_full.igs';
 
 fprintf("ÎÄ¼þÃû£º%s\n",igsfile);
