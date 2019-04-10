@@ -1,9 +1,9 @@
-function [res]=ReadEntiall_126(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
+function [res]=ReadEntiall_130(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
 res.type=type;
-% 在国标P107
+% 在国标P111
 A=1+Pvec(2)+Pvec(3);
 
-res.name='有理B样条曲线';
+res.name='偏置曲线';
 res.original=1;
 
 if showlines
