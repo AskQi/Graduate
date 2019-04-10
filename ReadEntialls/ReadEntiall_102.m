@@ -1,5 +1,5 @@
 function [res]=ReadEntiall_102(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-res.type=100;
+res.type=102;
 % 在国标P68
 res.name='复合曲线';
 
