@@ -3,7 +3,7 @@ function [res]=ReadEntiall_100(Pstr,Pvec,type,colorNo,formNo,transformationMatri
 % 缺省参数表表达式：
 % C(t) = (X1+R*cost,Y1+R*sint,Z1)
 % R = sqrt((X1-X2)^2+(Y1-Y2)^2)；
-res.type=100;
+res.type=type;
 
 zt=Pvec(2);
 x1=Pvec(3);

@@ -1,5 +1,5 @@
 function [res]=ReadEntiall_104(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-res.type=104;
+res.type=type;
 % ÔÚ¹ú±êP68
 A=Pvec(2);
 B=Pvec(3);
