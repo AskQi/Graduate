@@ -4,11 +4,9 @@ global support_read_fcn_type support_read_fcns support_drawing_fcn_type...
     support_drawing_fcns defaultColor transformationExists
 % 将当前文件夹下的所有文件夹都包括进调用函数的目录 
 addpath(genpath(pwd));
-% 加载IGES实体信息类
-iges_entiall_file='iges_entiall_info.xlsx';
-igesEntiallInfo=IgesEntiallInfo(iges_entiall_file);
+
 % 加载要绘制的实体
-igsfile = 'IGESfiles/pip.igs';
+igsfile = 'IGESfiles/srfOfRev.igs';
 fprintf("文件名：%s\n",igsfile);
 [fid,msg]=fopen(igsfile);
 if fid==-1
@@ -16,6 +14,9 @@ if fid==-1
 end
 c = fread(fid,'uint8=>uint8')';
 fclose(fid);
+% 加载IGES实体信息类
+iges_entiall_file='iges_entiall_info.xlsx';
+igesEntiallInfo=IgesEntiallInfo(iges_entiall_file);
 
 nwro=sum((c((81:82))==10))+sum((c((81:82))==13));
 edfi=nwro-sum(c(((end-1):end))==10)-sum(c(((end-1):end))==13);
