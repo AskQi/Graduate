@@ -8,7 +8,7 @@ addpath(genpath(pwd));
 iges_entiall_file='iges_entiall_info.xlsx';
 igesEntiallInfo=IgesEntiallInfo(iges_entiall_file);
 % 加载要绘制的实体
-igsfile = 'IGESfiles/circular_arc_full.igs';
+igsfile = 'IGESfiles/pip.igs';
 fprintf("文件名：%s\n",igsfile);
 [fid,msg]=fopen(igsfile);
 if fid==-1

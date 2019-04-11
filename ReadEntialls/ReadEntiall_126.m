@@ -6,12 +6,6 @@ A=1+Pvec(2)+Pvec(3);
 res.name='有理B样条曲线';
 res.original=1;
 
-if showlines
-    res.superior=0;
-else
-    res.superior=1;
-end
-
 res.k=Pvec(2);
 res.m=Pvec(3);
 
