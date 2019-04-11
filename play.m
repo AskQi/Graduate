@@ -2,8 +2,13 @@ clc;
 clear;
 global support_read_fcn_type support_read_fcns support_drawing_fcn_type...
     support_drawing_fcns defaultColor transformationExists
+% 将当前文件夹下的所有文件夹都包括进调用函数的目录 
+addpath(genpath(pwd));
+% 加载IGES实体信息类
+iges_entiall_file='iges_entiall_info.xlsx';
+igesEntiallInfo=IgesEntiallInfo(iges_entiall_file);
+% 加载要绘制的实体
 igsfile = 'IGESfiles/circular_arc_full.igs';
-
 fprintf("文件名：%s\n",igsfile);
 [fid,msg]=fopen(igsfile);
 if fid==-1
@@ -256,10 +261,10 @@ for i=startD:2:endD
         thisFcn=support_read_fcns{position};
         ParameterData{entiall}=thisFcn(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr);
     else
-        ParameterData{entiall}.name='未知类型';
+        ParameterData{entiall}.type=type;
+        ParameterData{entiall}.name=igesEntiallInfo.getNameByType(type);
         ParameterData{entiall}.unknown=char(Pstr);
         ParameterData{entiall}.well=false;
-        ParameterData{entiall}.type=type;
     end
     
     fprintf("\n\n");
@@ -281,7 +286,7 @@ for j=1:length(ParameterData)
     thisEntiall = ParameterData{j};
     type = thisEntiall.type;
     if thisEntiall.well~=true
-        fprintf("该类型暂时无法处理：%d\n",type);
+        fprintf("该类型暂时无法处理：%s (%d)\n",igesEntiallInfo.getNameByType(type),type);
         fprintf("\n");
         continue;
     end
@@ -290,7 +295,7 @@ for j=1:length(ParameterData)
         thisFcn=support_drawing_fcns{position};
         thisFcn(thisEntiall);
     else
-        fprintf("该类型实体绘制文件缺失：%d\n",type);
+        fprintf("该类型实体绘制文件缺失：%s (%d)\n",igesEntiallInfo.getNameByType(type),type);
     end
     fprintf("\n");
     
