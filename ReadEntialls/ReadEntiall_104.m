@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_104(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
 res.type=type;
-% 在国标P68
+% 在国标P71
 A=Pvec(2);
 B=Pvec(3);
 C=Pvec(4);
@@ -186,9 +186,4 @@ res.y1=Y1;
 res.x2=X2;
 res.y2=Y2;
 
-if showlines
-    res.superior=0;
-else
-    res.superior=1;
-end
 end

@@ -6,7 +6,7 @@ global support_read_fcn_type support_read_fcns support_drawing_fcn_type...
 addpath(genpath(pwd));
 
 % 加载要绘制的实体
-igsfile = 'IGESfiles/srfOfRev.igs';
+igsfile = 'IGESfiles/example.igs';
 fprintf("文件名：%s\n",igsfile);
 [fid,msg]=fopen(igsfile);
 if fid==-1
