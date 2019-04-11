@@ -20,7 +20,7 @@ t=thisEntiall.vmin:linespace:thisEntiall.vmax+linespace;
 
 x=x1+R*cos(t);
 y=y1+R*sin(t);
-z=zeros(length(t));
+z=ones(length(t))*zt;
 plot3(x,y,z);
 % plot3(p(1,:),p(2,:),p(3,:));
 res=true;
