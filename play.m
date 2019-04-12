@@ -18,26 +18,28 @@ fclose(fid);
 iges_entiall_file='iges_entiall_info.xlsx';
 igesEntiallInfo=IgesEntiallInfo(iges_entiall_file);
 
-nwro=sum((c((81:82))==10))+sum((c((81:82))==13));
-edfi=nwro-sum(c(((end-1):end))==10)-sum(c(((end-1):end))==13);
+nwro=sum((c((81:82))==10))+sum((c((81:82))==13));%第81，82个数据为10的个数和为13的个数
+%第81、82个数为iges文件中第一行末尾的换行符和第二行第一个字符的ascii码（换行符（10），回车键（13））
+edfi=nwro-sum(c(((end-1):end))==10)-sum(c(((end-1):end))==13);%nwro-最后两个数中为10和13的个数
 siz=length(c);
 ro=round((siz+edfi)/(80+nwro));
-if rem((siz+edfi),(80+nwro))~=0
+if rem((siz+edfi),(80+nwro))~=0 %如果最后一行没有换行符的话则加上与第一行相同的换行符或回车键作为总字符数
     error('该文件可能不是IGES文件!');
 end
+%分子为字符总个数，分母为每行的字符个数，IGES文件每行字符数目相同
 
-roind=1:ro;
-SGDPT=c(roind*(80+nwro)-7-nwro);
+roind=1:ro;%ro为文件行数
+SGDPT=c(roind*(80+nwro)-7-nwro);%每行的第73个字符代表所属区段
 
 %S部分直接显示即可
-Sfind=SGDPT==double('S');
+Sfind=SGDPT==double('S');%得到的为布尔值，判断第几个行末字符为S
 Gfind=SGDPT==double('G');
 Dfind=SGDPT==double('D');
 Pfind=SGDPT==double('P');
 % T部分没有必要弄
 Tfind=SGDPT==double('T');
 
-sumSfind=sum(Sfind);
+sumSfind=sum(Sfind);%S段一共有几行
 sumGfind=sum(Gfind);
 sumDfind=sum(Dfind);
 sumPfind=sum(Pfind);
@@ -79,7 +81,7 @@ cd ..
 %------S 部分的信息---------
 %S部分都是注释，可以直接输出
 fprintf("=> S部分信息如下：\n");
-for i=roind(Sfind)
+for i=roind(Sfind)%直接输出S段信息
     fprintf(char(c(((i-1)*(80+nwro)+1):(i*(80+nwro)-8-nwro))));
     fprintf("\n");
 end
@@ -87,20 +89,20 @@ end
 %------G 部分的信息---------
 %G部分记录了25个信息，默认使用“,”进行分割。
 %在这里将其全部信息合并
-G=cell(1,25);
+G=cell(1,25);%全局段定义25个参数
 %记录G部分有效部分合并为一行后的结果
-Gstr=zeros(1,72*sumGfind);
+Gstr=zeros(1,72*sumGfind);%每行72个有效字符
 j=1;
 for i=roind(Gfind)
     Gstr(((j-1)*72+1):(j*72))=c(((i-1)*(80+nwro)+1):(i*(80+nwro)-8-nwro));
     j=j+1;
-end
+end%j最终为G段的行数+1
 %识别预设分隔符,st为当前指针
-if and(Gstr(1)==double('1'),Gstr(2)==double('H'))
-    G{1}=Gstr(3);
+if and(Gstr(1)==double('1'),Gstr(2)==double('H'))%前两个字符为1，H
+    G{1}=Gstr(3);%第三个字符为参数分隔符
     st=4;
 else
-    G{1}=double(',');
+    G{1}=double(',');%参数分隔符为缺省值“，”
     st=1;
 end
 
@@ -108,49 +110,49 @@ if and(Gstr(st+1)==double('1'),Gstr(st+2)==double('H'))
     G{2}=Gstr(st+3);
     st=st+4;
 else
-    G{2}=double(';');
+    G{2}=double(';');%记录分界符为缺省值“；”
     st=st+1;
 end
 
 le=length(Gstr);
 for i=3:25
     for j=(st+1):le
-        if or(Gstr(j)==G{1},Gstr(j)==G{2})
+        if or(Gstr(j)==G{1},Gstr(j)==G{2})%取到某一个j时遇到“，”或“；”跳出此for循环，给当前G{i}赋值
             break
         end
     end
-    G{i}=Gstr((st+1):(j-1));
+    G{i}=Gstr((st+1):(j-1));%此处j当前参数后的分隔符
     st=j;
 end
 
-for i=[3 4 5 6 12 15 18 21 22 25]   %string
+for i=[3 4 5 6 12 15 18 21 22 25]%string,这些参数为字符串形式，排除每个参数中的空格和H
+    %确定开始位置
     stind=1;
     for j=1:length(G{i})
-        if G{i}(j)~=double(' ')
-            stind=j;
+        if G{i}(j)~=double(' ')%第i个参数第j个字符不是空格
+            stind=j;%从第一个
             break
         end
     end
     for j=stind:length(G{i})
-        if G{i}(j)==double('H')
-            stind=j+1;
+        if G{i}(j)==double('H')%第j个字符是H
+            stind=j+1;%H之后的字符为实际参数
             break
         end
     end
+    %确定结束位置
     endind=length(G{i});
     for j=length(G{i}):-1:1
         if G{i}(j)~=double(' ')
-            endind=j;
+            endind=j;%G{i}的最后一个字符不能是空格
             break
         end
     end
-    G{i}=G{i}(stind:endind);
+    G{i}=G{i}(stind:endind);%第i个字符串参数的实际字符段
 end
 
-% for i=[7 8 9 10 11 13 14 16 17 19 20 23 24]   %num
-%     G{i}=str2num(char(G{i}));
-% end
-%到这里，G已经获取了所有关于G的数据
+
+
 G_Description={"参数分隔符","记录分隔符","发送系统产品ID","文件名",...
     "系统ID","前置处理器版本","整数的二进制表示位数",...
     "发送系统单精度浮点数十进制最大幂次","发送系统单精度浮点数有效位数",...
@@ -164,13 +166,16 @@ fprintf("=> G部分信息如下：\n");
 for j=1:length(G_Description)
     fprintf("(%d)%s：%s\n",j,G_Description{j},G{j});
 end
-
+%到这里，G已经获取了所有关于G的数据
+for i=[7 8 9 10 11 13 14 16 17 19 20 23 24]   %num
+    G{i}=str2num(char(G{i}));
+end
 
 %------D 部分的信息---------
 %元素个数
-noent=round(sumDfind/2);
+noent=round(sumDfind/2);%目录条目段每个实体占两行
 ParameterData=cell(1,noent);
-roP=sumSfind+sumGfind+sumDfind;
+roP=sumSfind+sumGfind+sumDfind;%参数段的起始位置-1
 
 entty=zeros(1,520);
 entunk=zeros(1,520);
@@ -192,21 +197,21 @@ entiall=0;
 startD=sumSfind+sumGfind+1;
 endD=sumSfind+sumGfind+sumDfind-1;
 for i=startD:2:endD
-    
+    %i从D段开始行数计，到D段结束行
     entiall=entiall+1;
-    Dstr1=c(((i-1)*(80+nwro)+1):(i*(80+nwro)-8-nwro));
-    Dstr2=c((i*(80+nwro)+1):((i+1)*(80+nwro)-8-nwro));
+    Dstr1=c(((i-1)*(80+nwro)+1):(i*(80+nwro)-8-nwro));%该实体第一行除去最后八个字符之外的所有字符
+    Dstr2=c((i*(80+nwro)+1):((i+1)*(80+nwro)-8-nwro));%第二行
     
-    type=str2num(char(Dstr1(1:8)));
-    transformationMatrixPtr=str2num(char(Dstr1(49:56)));
+    type=str2num(char(Dstr1(1:8)));%把ascii码转换为对应的字符
+    transformationMatrixPtr=str2num(char(Dstr1(49:56)));%转换矩阵指针域(转换矩阵用于坐标变换)
     if isempty(transformationMatrixPtr)
         transformationMatrixPtr=0;
     end
-    colorNo=str2num(char(Dstr2(17:24)));
+    colorNo=str2num(char(Dstr2(17:24)));%实体的颜色号
     if isempty(colorNo)
         colorNo=0;
     end
-    formNo=str2num(char(Dstr2(33:40)));
+    formNo=str2num(char(Dstr2(33:40)));%实体的格式号
     if isempty(formNo)
         formNo=0;
     end
@@ -214,7 +219,7 @@ for i=startD:2:endD
     if transformationMatrixPtr>0
         transformationMatrixPtr=round((transformationMatrixPtr+1)/2);
     end
-    if colorNo<0
+    if colorNo<0%颜色号指针为负
         colorNo=-round((-colorNo+1)/2);
     end
     D1_Description={"元素类型号","参数指针","版本",...
@@ -233,14 +238,15 @@ for i=startD:2:endD
     
     % P部分开始
     Pstart=str2num(char(Dstr1(9:16)))+roP;
-    
-    if i==roP-1
-        Pend=ro-sumTfind;
+    %该实体在P段的起始行数+P段起始行数-1=该实体所在行数
+    if i==roP-1%该实体为最后一个实体
+        Pend=ro-sumTfind;%则该实体最后一行就是T段前一行
     else
         Pend=str2num(char(c(((i+1)*(80+nwro)+9):((i+1)*(80+nwro)+16))))+roP-1;
+        %下一个实体在P段的起始行数+SGD段行数之和-1=该实体P段结束行数
     end
     
-    Pstr=zeros(1,64*(Pend-Pstart+1));
+    Pstr=zeros(1,64*(Pend-Pstart+1));%每行的有效信息为前8个域共64个字符
     j=1;
     for k=Pstart:Pend
         Pstr(((j-1)*64+1):(j*64))=c(((k-1)*(80+nwro)+1):(k*(80+nwro)-16-nwro));
@@ -249,8 +255,8 @@ for i=startD:2:endD
     
     Pstr(Pstr==G{1})=44;
     Pstr(Pstr==G{2})=59;
-    
-    Pvec=str2num(char(Pstr));
+    %P段的分隔符和分界符统一为“，”和“；”，方便给Pvec赋值时自动以“，”分隔参数
+    Pvec=str2num(char(Pstr));%该实体的全部参数信息ascii码转为数字, 遇到“，”会自动分开存储
     
     fprintf("=> P部分信息如下：\n");
     % 存储实体
