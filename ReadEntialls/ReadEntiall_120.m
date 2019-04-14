@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_120(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
 res.type=type;
-% 相关资料在国标P97
+% 回转曲面，相关资料在国标P97
 res.name='回转曲面';
 
 res.original=1;
@@ -17,11 +17,6 @@ res.trnsfrmtnmtrx=transformationMatrixPtr;
 res.clrnmbr=colorNo;
 res.color=[0,0,0];
 
-res.ratio=[0,0];
-
-res.well=true;
-
-res.isplane=false;
-res.ulinear=0;
-res.vlinear=0;
+res.well=false;
+%TODO:转换为NURBS曲面
 end

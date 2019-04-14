@@ -1,5 +1,5 @@
 function [res]=ReadEntiall_100(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-% 相关资料在国标P67
+% 圆弧实体，相关资料在国标P67
 % 缺省参数表表达式：
 % C(t) = (X1+R*cost,Y1+R*sint,Z1)
 % R = sqrt((X1-X2)^2+(Y1-Y2)^2)；
@@ -57,7 +57,8 @@ for ii=1:7
     PP(3,ii)=zt;
     
 end
-
+%转换为NURBS曲线
+res.type=126;
 res.name='B-NURBS曲线';
 res.original=0;
 res.previous_type=100;

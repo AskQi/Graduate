@@ -1,5 +1,5 @@
 function [res]=ReadEntiall_110(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-% 相关资料在国标P85
+% 直线实体，相关资料在国标P85
 % 缺省参数表表达式：
 % C(t) = P1 + t*(P2-P1) , t∈[0,1]
 res.type=type;

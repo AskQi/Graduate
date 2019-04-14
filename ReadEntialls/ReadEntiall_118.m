@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_118(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
 res.type=type;
-% 相关资料在国标P94，采用格式1（相对参数值）
+% 直纹面实体，相关资料在国标P94，采用格式1（相对参数值）
 res.name='直纹面';
 
 res.original=1;
@@ -19,11 +19,6 @@ res.color=[0,0,0];
 
 res.form=formNo;
 
-res.ratio=[0,0];
-
-res.well=true;
-
-res.isplane=false;
-res.ulinear=0;
-res.vlinear=1;
+res.well=false;
+%TODO:转换为NURBS曲面
 end

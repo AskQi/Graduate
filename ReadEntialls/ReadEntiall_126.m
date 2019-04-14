@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_126(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
 res.type=type;
-% 在国标P107
+% 有理B样条曲线，在国标P107
 A=1+Pvec(2)+Pvec(3);
 
 res.name='有理B样条曲线';
@@ -32,9 +32,7 @@ else
     res.ynorm=0;
     res.znorm=0;
 end
-
-% NURBS曲线
-
+%NURBS曲线
 res.nurbs.form='B-NURBS';
 
 res.nurbs.dim=4;

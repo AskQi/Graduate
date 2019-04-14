@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_114(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
 res.type=type;
-% 在国标P90
+% 参数样条曲面，在国标P90
 res.name='参数样条曲面';
 
 res.original=1;

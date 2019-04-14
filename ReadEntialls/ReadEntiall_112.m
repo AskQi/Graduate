@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_112(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
 res.type=type;
-% 在国标P87
+% 参数样条曲线，在国标P87
 res.name='参数样条曲线';
 res.original=1;
 res.superior=0;
@@ -24,7 +24,7 @@ res.tp=Pvec(ind:(ind+11));
 
 breakPointsPP=res.t;
 
-% 将参数样条曲线转换为NURBS曲线
+%转换为NURBS曲线
 res.type=126;
 res.name='B-NURBS曲线';
 res.original=0;

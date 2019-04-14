@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_106(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
 res.type=type;
-% 106实体在各种iges文件中都没找到
+% 2D路径、3D路径简单封封闭平面曲线，实体在各种iges文件中都没找到
 % 11和12在国标P76,61在国标P82
 
 ip=Pvec(2);
@@ -9,7 +9,7 @@ data=Pvec(4,:);
 
 useableForm=[11 12 63];
 if any(formNo==useableForm)
-    % TODO:完成处理
+    % TODO:完成转换
     switch type
         case 11
             res.name='数据块实体（2D路径）';

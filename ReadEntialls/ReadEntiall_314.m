@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_314(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
 global defaultColor
-% 相关说明在V6标准P386
+% 颜色实体，在国标P256
 
 res.type=type;
 res.name='颜色';

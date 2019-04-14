@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_122(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
 res.type=type;
-% 相关资料在国标P98
+% 列表柱面，相关资料在国标P98
 res.name='列表柱面';
 
 res.original=1;
@@ -19,9 +19,6 @@ res.color=[0,0,0];
 
 res.ratio=[0,0];
 
-res.well=true;
-
-res.isplane=false;
-res.ulinear=0;
-res.vlinear=1;
+res.well=false;
+%TODO:转换为NURBS曲面
 end

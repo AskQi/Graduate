@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_130(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
 res.type=type;
-% 在国标P111
+% 偏置曲线，在国标P111
 res.name='偏置曲线';
 
 del1=Pvec(2);
@@ -19,7 +19,7 @@ vz=Pvec(13);
 tt1=Pvec(14);
 tt2=Pvec(15);
 
-% TODO:完成转换计算
+%TODO:转换为NURBS曲线
 
 res.del1=del1;
 res.flag=flag;
