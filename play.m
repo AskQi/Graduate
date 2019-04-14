@@ -314,23 +314,29 @@ for i=1:noent
 end
 
 
-
+fprintf("\n开始配置实体颜色\n");
 % 修改实体颜色
 mIgesColorUtil=IgesColorUtil(defaultColor);
 for i=1:noent
     if ParameterData{i}.well==0
+        fprintf("不可用实体：%s(%d)\n",ParameterData{i}.name,ParameterData{i}.type);
         continue;
+    else
+        fprintf("正在修改实体颜色：%s(%d)\n",ParameterData{i}.name,ParameterData{i}.type);
     end
     if mIgesColorUtil.isNeedHandleColor(ParameterData{i})
         ParameterData{i}=mIgesColorUtil.handleParameterDataColor(ParameterData,i);
     end
 end
-
+fprintf("\n开始计算实体数据\n");
 % 计算length、ratio等参数（最后一步计算）
 noentII=noent;
 for i=1:noentII
     if ParameterData{i}.well==0
+        fprintf("不可用实体：%s(%d)\n",ParameterData{i}.name,ParameterData{i}.type);
         continue;
+    else
+        fprintf("正在计算实体数据：%s(%d)\n",ParameterData{i}.name,ParameterData{i}.type);
     end
     type=ParameterData{i}.type;
     position=find(support_final_calculation_fcn_types==type);
@@ -342,8 +348,8 @@ for i=1:noentII
             ParameterData{entiall}.type,ParameterData{entiall});
     end
 end
-
-plotIGES(ParameterData, 2, 1, 100, 1, 0, 1, 0);
+fprintf("\n开始绘图\n");
+handlePlot=plotIGES(ParameterData, 2, 1, 100, 1, 0, 1, 0);
 % % 关闭所有图像窗口
 % close all;
 % figure

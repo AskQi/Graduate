@@ -54,7 +54,7 @@ if nargin<8
                         if nargin<2
                             srf=0;
                             if nargin<1
-                                error('plotIGES must have an input');
+                                error('绘图函数没输入参数！');
                             end
                         end
                     end
@@ -73,9 +73,9 @@ else
 end
 
 if isempty(ParameterData)
-    error('Empty ParameterData');
+    error('ParameterData为空');
 elseif not(iscell(ParameterData))
-    error('Invalid ParameterData. Must be a cell array!');
+    error('ParameterData内容必须是cell数组!');
 end
 
 if isempty(srf)
@@ -119,7 +119,7 @@ elseif not(plotCrvPnts==0 | plotCrvPnts==1)
     plotCrvPnts=1;
 end
 
-subd=subd+1;  % subd now number of points, not number of subintervals
+subd=subd+1;  % subd当前的点数,不是间隔数
 
 siz=length(ParameterData);
 
@@ -142,7 +142,10 @@ if nargout>0
     
     for i=1:siz
         if ParameterData{i}.well==0
+            fprintf("不支持绘制：%s(%d)\n",ParameterData{i}.name,ParameterData{i}.type);
             continue;
+        else
+            fprintf("正在绘制：%s(%d)\n",ParameterData{i}.name,ParameterData{i}.type);
         end
         [P,isSCP,isSup]=retSrfCrvPnt(2,ParameterData,1,i,subd,3);
         
@@ -185,7 +188,7 @@ if nargout>0
                 end
                 
                 if and(isSCP,not(isSup))
-                    if srf1%triangular patch
+                    if srf1%patch
                         if not(usrDefClr)
                             clr(:)=ParameterData{i}.color;
                         end
