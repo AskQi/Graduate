@@ -282,7 +282,10 @@ for i=startD:2:endD
         ParameterData{entiall}.original=1;
         ParameterData{entiall}.length=0;
     end
-    ParameterData{entiall}.name=igesEntiallInfo.getNameByType(type);
+    if ~ParameterData{entiall}.name
+        %没有设置名字就按照标准给定名字
+        ParameterData{entiall}.name=igesEntiallInfo.getNameByType(type);
+    end
     fprintf("类型：%d，名称：%s\n是否能够读取：%s\n\n",...
         ParameterData{entiall}.type,ParameterData{entiall}.name,isread);
     
@@ -336,7 +339,7 @@ for i=1:noentII
     end
 end
 
-plotIGES(ParameterData, 2, 1, 100, 1, 0, 1, 0)
+plotIGES(ParameterData, 2, 1, 100, 1, 0, 1, 0);
 % % 关闭所有图像窗口
 % close all;
 % figure
