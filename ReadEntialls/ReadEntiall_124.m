@@ -1,8 +1,6 @@
 function [res]=ReadEntiall_124(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-global transformationExists
 res.type=type;
 % 在国标P100
-transformationExists=true;
 
 res.name='变换矩阵';
 

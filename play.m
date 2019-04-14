@@ -273,6 +273,9 @@ for i=startD:2:endD
         isread='成功读取';
         thisFcn=support_read_fcns{position};
         ParameterData{entiall}=thisFcn(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr);
+        if ParameterData{entiall}.type==124
+            transformationExists=true;
+        end
     else
         isread='无法读取';
         entty(type)=entty(type)-1;
