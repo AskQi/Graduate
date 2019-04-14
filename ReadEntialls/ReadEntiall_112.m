@@ -27,7 +27,7 @@ breakPointsPP=res.t;
 
 res.type=126;
 
-res.name='B-NURBS 曲线';
+res.name='B-NURBS曲线';
 res.original=0;
 res.previous_type=112;
 res.previous_name='参数样条曲线';
@@ -117,7 +117,7 @@ res.ynorm=0;
 res.znorm=1;
 
 
-% NURBS curve
+% NURBS曲线
 
 res.nurbs.form='B-NURBS';
 

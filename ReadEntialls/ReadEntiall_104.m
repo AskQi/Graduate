@@ -76,7 +76,7 @@ if and(Dig(1,1)>1e-6,Dig(2,2)>1e-6)
     
     res.type=126;
     
-    res.name='B-NURBS CRV';
+    res.name='B-NURBSÇúÏß';
     res.original=0;
     res.previous_type=104;
     res.previous_name='Ô²×¶ÇúÏß»¡';
@@ -101,7 +101,7 @@ if and(Dig(1,1)>1e-6,Dig(2,2)>1e-6)
     res.ynorm=0;
     res.znorm=1;
     
-    % NURBS curve
+    % NURBS ÇúÏß
     
     res.nurbs.form='B-NURBS';
     
@@ -134,8 +134,6 @@ if and(Dig(1,1)>1e-6,Dig(2,2)>1e-6)
     res.evalmthd=0;
     
     res.well=true;
-    
-    clear PP nup p len iDig
     
 else
     

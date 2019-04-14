@@ -58,10 +58,10 @@ for ii=1:7
     
 end
 
-res.name='B-NURBS CRV';
+res.name='B-NURBSÇúÏß';
 res.original=0;
 res.previous_type=100;
-res.previous_name='CIRCULAR ARC';
+res.previous_name='Ô²»¡ÇúÏß';
 res.zt=zt;
 res.x1=x1;
 res.y1=y1;
@@ -96,7 +96,7 @@ res.xnorm=0;
 res.ynorm=0;
 res.znorm=1;
 
-% NURBS curve
+% NURBS ÇúÏß
 
 res.nurbs.form='B-NURBS';
 

@@ -33,7 +33,7 @@ else
     res.znorm=0;
 end
 
-% NURBS curve
+% NURBSÇúÏß
 
 res.nurbs.form='B-NURBS';
 
