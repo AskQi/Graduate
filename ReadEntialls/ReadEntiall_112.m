@@ -3,12 +3,7 @@ res.type=type;
 % 在国标P87
 res.name='参数样条曲线';
 res.original=1;
-
-if showlines
-    res.superior=0;
-else
-    res.superior=1;
-end
+res.superior=0;
 
 res.ctype=Pvec(2);
 res.h=Pvec(3);
@@ -32,7 +27,7 @@ breakPointsPP=res.t;
 
 res.type=126;
 
-res.name='B-NURBS CRV';
+res.name='B-NURBS 曲线';
 res.original=0;
 res.previous_type=112;
 res.previous_name='参数样条曲线';

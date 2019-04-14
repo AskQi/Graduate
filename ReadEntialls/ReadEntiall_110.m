@@ -5,6 +5,8 @@ function [res]=ReadEntiall_110(Pstr,Pvec,type,colorNo,formNo,transformationMatri
 res.type=type;
 res.name='直线';
 res.original=1;
+res.superior=0;
+
 p1=Pvec(2:4)';
 p2=Pvec(5:7)';
 
@@ -18,12 +20,14 @@ res.x2=p2(1);
 res.y2=p2(2);
 res.z2=p2(3);
 
-res.length=norm(p1-p2);
+res.length=0;
+
+res.trnsfrmtnmtrx=transformationMatrixPtr;
 % D部分记录的颜色编号
 res.clrnmbr=colorNo;
 res.color=[0,0,0];
-fprintf("type：%d，name：%s\np1:%d,%d,%d\np2%d,%d,%d\n",...
-    res.type,res.name,res.p1,res.p2);
 
+res.numcrv=1;
+res.evalmthd=0;
 res.well=true;
 end
