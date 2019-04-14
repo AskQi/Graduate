@@ -24,9 +24,8 @@ res.tp=Pvec(ind:(ind+11));
 
 breakPointsPP=res.t;
 
-
+% 将参数样条曲线转换为NURBS曲线
 res.type=126;
-
 res.name='B-NURBS曲线';
 res.original=0;
 res.previous_type=112;
