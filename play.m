@@ -4,11 +4,31 @@ global support_read_fcn_types support_read_fcns...
     support_convert_fcn_types support_convert_fcns...
     support_final_calculation_fcn_types support_final_calculation_fcns...
     defaultColor
+% 调试模式下自动选择默认文件
+isDebugMode=1;
+if isDebugMode
+    % 加载要绘制的实体，测试时取消注释
+    igsfile = 'IGESfiles/more/carca.igs';
+else
+    % 选择要绘制的IGES文件
+    workingdir = pwd ;
+    igesdir = dir('IGESfiles*') ;
+    if ~isempty(igesdir.name), cd(igesdir.name), end
+    
+    [igsfile,igesdir] = uigetfile('*.igs','请选择要加载的IGES文件') ;
+    if ~igsfile
+        cd(workingdir);
+        return
+    elseif isempty(regexp(igsfile,'\.igs(?!.)','once'))
+        cd(igesdir);
+        error('必须选择一个IGES文件（*.igs）')
+    else
+        cd(igesdir);
+    end
+    cd(workingdir);
+end
 % 将当前文件夹下的所有文件夹都包括进调用函数的目录
 addpath(genpath(pwd));
-
-% 加载要绘制的实体
-igsfile = 'IGESfiles/more/carca.igs';
 fprintf("文件名：%s\n",igsfile);
 [fid,msg]=fopen(igsfile);
 if fid==-1
@@ -295,8 +315,7 @@ for i=startD:2:endD
     
 end
 
-% 从其他类型实体创建NUSBS曲面
-% 将其他类型的曲面转换为128有理B样条曲面
+% 将其他类型实体创建NUSBS实体
 for i=1:noent
     if ParameterData{i}.well==0
         continue;
