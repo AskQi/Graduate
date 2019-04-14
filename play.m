@@ -282,7 +282,8 @@ for i=startD:2:endD
         ParameterData{entiall}.original=1;
         ParameterData{entiall}.length=0;
     end
-    if ~ParameterData{entiall}.name
+    
+    if ~isfield(ParameterData{entiall},'name')
         %没有设置名字就按照标准给定名字
         ParameterData{entiall}.name=igesEntiallInfo.getNameByType(type);
     end
