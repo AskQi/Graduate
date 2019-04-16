@@ -142,10 +142,10 @@ if nargout>0
     
     for i=1:siz
         if ParameterData{i}.well==0
-            fprintf("不支持绘制：%s(%d)\n",ParameterData{i}.name,ParameterData{i}.type);
+            fprintf('不支持绘制：%s(%d)\n',ParameterData{i}.name,ParameterData{i}.type);
             continue;
         else
-            fprintf("正在绘制：%s(%d)\n",ParameterData{i}.name,ParameterData{i}.type);
+            fprintf('正在绘制：%s(%d)\n',ParameterData{i}.name,ParameterData{i}.type);
         end
         [P,isSCP,isSup]=retSrfCrvPnt(2,ParameterData,1,i,subd,3);
         

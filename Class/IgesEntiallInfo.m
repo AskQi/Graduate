@@ -10,9 +10,9 @@ classdef IgesEntiallInfo
         function entiall_name=getNameByType(obj,entiall_type)
             entiall_id=obj.iges_entiall_types == entiall_type;
             if sum(entiall_id)==0
-                entiall_name="未知实体 ("+entiall_type+")";
+                entiall_name='未知实体 ('+entiall_type+')';
             else
-                entiall_name=string(obj.iges_entiall_names(entiall_id));
+                entiall_name=char(obj.iges_entiall_names(entiall_id));
             end
             
         end

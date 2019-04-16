@@ -1,7 +1,7 @@
 function [ParameterData,enttyCut]=ConvertEntiall_122(ParameterData,i)
 % 相关资料在国标P
 
-fprintf("转换类型：%s(%d)\n",thisEntiall.name,thisEntiall.type);
+fprintf('转换类型：%s(%d)\n',thisEntiall.name,thisEntiall.type);
 enttyCut=0;
 if ParameterData{ParameterData{i}.de}.type==110
     

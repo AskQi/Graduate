@@ -29,7 +29,7 @@ else
 end
 % ½«µ±Ç°ÎÄ¼ş¼ĞÏÂµÄËùÓĞÎÄ¼ş¼Ğ¶¼°üÀ¨½øµ÷ÓÃº¯ÊıµÄÄ¿Â¼
 addpath(genpath(pwd));
-fprintf("ÎÄ¼şÃû£º%s\n",igsfile);
+fprintf('ÎÄ¼şÃû£º%s\n',igsfile);
 [fid,msg]=fopen(igsfile);
 if fid==-1
     error(msg);
@@ -77,9 +77,9 @@ expression='\d{3,4}';
 
 for j=1:read_fcn_names_number
     read_fcn_name=read_entialls_fcn_file(j).name;
-    this_num= cellstr(regexp(read_fcn_name,expression,'match'));
+    this_num=cellstr(regexp(read_fcn_name,expression,'match'));
     support_read_fcn_types(j)=transpose(str2num(cell2mat(this_num)));
-    support_read_fcn_name="ReadEntiall_"+this_num;
+    support_read_fcn_name=strcat('ReadEntiall_',char(this_num));
     support_read_fcns{j} = str2func(support_read_fcn_name);
 end
 cd ..
@@ -95,7 +95,7 @@ for j=1:convert_fcn_names_number
     convert_fcn_name=convert_entialls_fcn_file(j).name;
     this_num= cellstr(regexp(convert_fcn_name,expression,'match'));
     support_convert_fcn_types(j)=transpose(str2num(cell2mat(this_num)));
-    support_convert_fcn_name="ConvertEntiall_"+this_num;
+    support_convert_fcn_name=strcat('ConvertEntiall_',char(this_num));
     support_convert_fcns{j} = str2func(support_convert_fcn_name);
 end
 cd ..
@@ -111,16 +111,16 @@ for j=1:final_calculation_fcn_names_number
     final_calculation_fcn_name=final_calculation_entialls_fcn_file(j).name;
     this_num= cellstr(regexp(final_calculation_fcn_name,expression,'match'));
     support_final_calculation_fcn_types(j)=transpose(str2num(cell2mat(this_num)));
-    support_final_calculation_fcn_name="FinalCalculation_"+this_num;
+    support_final_calculation_fcn_name=strcat('FinalCalculation_',char(this_num));
     support_final_calculation_fcns{j} = str2func(support_final_calculation_fcn_name);
 end
 cd ..
 %------S ²¿·ÖµÄĞÅÏ¢---------
 %S²¿·Ö¶¼ÊÇ×¢ÊÍ£¬¿ÉÒÔÖ±½ÓÊä³ö
-fprintf("=> S²¿·ÖĞÅÏ¢ÈçÏÂ£º\n");
+fprintf('=> S²¿·ÖĞÅÏ¢ÈçÏÂ£º\n');
 for i=roind(Sfind)%Ö±½ÓÊä³öS¶ÎĞÅÏ¢
     fprintf(char(c(((i-1)*(80+nwro)+1):(i*(80+nwro)-8-nwro))));
-    fprintf("\n");
+    fprintf('\n');
 end
 
 %------G ²¿·ÖµÄĞÅÏ¢---------
@@ -188,18 +188,18 @@ for i=[3 4 5 6 12 15 18 21 22 25]%string,ÕâĞ©²ÎÊıÎª×Ö·û´®ĞÎÊ½£¬ÅÅ³ıÃ¿¸ö²ÎÊıÖĞµÄ¿
     G{i}=G{i}(stind:endind);%µÚi¸ö×Ö·û´®²ÎÊıµÄÊµ¼Ê×Ö·û¶Î
 end
 
-G_Description={"²ÎÊı·Ö¸ô·û","¼ÇÂ¼·Ö¸ô·û","·¢ËÍÏµÍ³²úÆ·ID","ÎÄ¼şÃû",...
-    "ÏµÍ³ID","Ç°ÖÃ´¦ÀíÆ÷°æ±¾","ÕûÊıµÄ¶ş½øÖÆ±íÊ¾Î»Êı",...
-    "·¢ËÍÏµÍ³µ¥¾«¶È¸¡µãÊıÊ®½øÖÆ×î´óÃİ´Î","·¢ËÍÏµÍ³µ¥¾«¶È¸¡µãÊıÓĞĞ§Î»Êı",...
-    "·¢ËÍÏµÍ³Ë«¾«¶È¸¡µãÊıÊ®½øÖÆ×î´óÃİ´Î","·¢ËÍÏµÍ³Ë«¾«¶È¸¡µãÊıÓĞĞ§Î»Êı",...
-    "½ÓÊÕÏµÍ³²úÆ·ID","Ä£ĞÍ¿Õ¼ä±ÈÀı","µ¥Î»±êÖ¾","µ¥Î»","Ö±ÏßÏß¿íµÄ×î´óµÈ¼¶",...
-    "×î´óÖ±ÏßÏß¿í","½»»»ÎÄ¼şÉú³ÉµÄÈÕÆÚºÍÊ±¼ä","ÓÃ»§Éè¶¨µÄÄ£ĞÍµÈ¼¶µÄ×îĞ¡Öµ",...
-    "Ä£ĞÍµÄ½üËÆ×î´ó×ø±êÖµ","×÷ÕßÃû","×÷Õßµ¥Î»",...
-    "¶ÔÓ¦ÓÚ´´½¨±¾ÎÄ¼şµÄIGES±ê×¼°æ±¾ºÅµÄÕûÊı","»æÍ¼±ê×¼",...
-    "´´½¨»ò×î½üĞŞ¸ÄÄ£ĞÍµÄÈÕÆÚºÍÊ±¼ä"};
-fprintf("=> G²¿·ÖĞÅÏ¢ÈçÏÂ£º\n");
+G_Description={'²ÎÊı·Ö¸ô·û','¼ÇÂ¼·Ö¸ô·û','·¢ËÍÏµÍ³²úÆ·ID','ÎÄ¼şÃû',...
+    'ÏµÍ³ID','Ç°ÖÃ´¦ÀíÆ÷°æ±¾','ÕûÊıµÄ¶ş½øÖÆ±íÊ¾Î»Êı',...
+    '·¢ËÍÏµÍ³µ¥¾«¶È¸¡µãÊıÊ®½øÖÆ×î´óÃİ´Î','·¢ËÍÏµÍ³µ¥¾«¶È¸¡µãÊıÓĞĞ§Î»Êı',...
+    '·¢ËÍÏµÍ³Ë«¾«¶È¸¡µãÊıÊ®½øÖÆ×î´óÃİ´Î','·¢ËÍÏµÍ³Ë«¾«¶È¸¡µãÊıÓĞĞ§Î»Êı',...
+    '½ÓÊÕÏµÍ³²úÆ·ID','Ä£ĞÍ¿Õ¼ä±ÈÀı','µ¥Î»±êÖ¾','µ¥Î»','Ö±ÏßÏß¿íµÄ×î´óµÈ¼¶',...
+    '×î´óÖ±ÏßÏß¿í','½»»»ÎÄ¼şÉú³ÉµÄÈÕÆÚºÍÊ±¼ä','ÓÃ»§Éè¶¨µÄÄ£ĞÍµÈ¼¶µÄ×îĞ¡Öµ',...
+    'Ä£ĞÍµÄ½üËÆ×î´ó×ø±êÖµ','×÷ÕßÃû','×÷Õßµ¥Î»',...
+    '¶ÔÓ¦ÓÚ´´½¨±¾ÎÄ¼şµÄIGES±ê×¼°æ±¾ºÅµÄÕûÊı','»æÍ¼±ê×¼',...
+    '´´½¨»ò×î½üĞŞ¸ÄÄ£ĞÍµÄÈÕÆÚºÍÊ±¼ä'};
+fprintf('=> G²¿·ÖĞÅÏ¢ÈçÏÂ£º\n');
 for j=1:length(G_Description)
-    fprintf("(%d)%s£º%s\n",j,G_Description{j},G{j});
+    fprintf('(%d)%s£º%s\n',j,G_Description{j},G{j});
 end
 %µ½ÕâÀï£¬GÒÑ¾­»ñÈ¡ÁËËùÓĞ¹ØÓÚGµÄÊı¾İ
 for i=[7 8 9 10 11 13 14 16 17 19 20 23 24]   %num
@@ -247,18 +247,18 @@ for i=startD:2:endD
     if colorNo<0%ÑÕÉ«ºÅÖ¸ÕëÎª¸º
         colorNo=-round((-colorNo+1)/2);
     end
-    D1_Description={"ÔªËØÀàĞÍºÅ","²ÎÊıÖ¸Õë","°æ±¾",...
-        "ÏßĞÍ","Í¼²ã","ÊÓÍ¼","±ä»»¾ØÕó",...
-        "±êºÅÏÔÊ¾","×´Ì¬ºÅ"};
-    D2_Description={"ÔªËØÀàĞÍºÅ","Ö±ÏßµÄÈ¨ºÅ","ÑÕÉ«ºÅ",...
-        "²ÎÊı¼ÇÂ¼Êı","ĞÎÊ½ºÅ","Áô×÷½«À´Ê¹ÓÃ","Áô×÷½«À´Ê¹ÓÃ",...
-        "ÔªËØ±êºÅ","ÔªËØÏÂ±êºÅ"};
-    fprintf("=> D²¿·ÖĞÅÏ¢ÈçÏÂ£º\n");
+    D1_Description={'ÔªËØÀàĞÍºÅ','²ÎÊıÖ¸Õë','°æ±¾',...
+        'ÏßĞÍ','Í¼²ã','ÊÓÍ¼','±ä»»¾ØÕó',...
+        '±êºÅÏÔÊ¾','×´Ì¬ºÅ'};
+    D2_Description={'ÔªËØÀàĞÍºÅ','Ö±ÏßµÄÈ¨ºÅ','ÑÕÉ«ºÅ',...
+        '²ÎÊı¼ÇÂ¼Êı','ĞÎÊ½ºÅ','Áô×÷½«À´Ê¹ÓÃ','Áô×÷½«À´Ê¹ÓÃ',...
+        'ÔªËØ±êºÅ','ÔªËØÏÂ±êºÅ'};
+    fprintf('=> D²¿·ÖĞÅÏ¢ÈçÏÂ£º\n');
     for j=1:length(D1_Description)
-        fprintf("(%d)%s£º%d\n",j,D1_Description{j},str2num(char(Dstr1(j*8-7:j*8))));
+        fprintf('(%d)%s£º%d\n',j,D1_Description{j},str2num(char(Dstr1(j*8-7:j*8))));
     end
     for j=1:length(D2_Description)
-        fprintf("(%d)%s£º%d\n",j+10,D2_Description{j},str2num(char(Dstr2(j*8-7:j*8))));
+        fprintf('(%d)%s£º%d\n',j+10,D2_Description{j},str2num(char(Dstr2(j*8-7:j*8))));
     end
     
     % P²¿·Ö¿ªÊ¼
@@ -283,7 +283,7 @@ for i=startD:2:endD
     %P¶ÎµÄ·Ö¸ô·ûºÍ·Ö½ç·ûÍ³Ò»Îª¡°£¬¡±ºÍ¡°£»¡±£¬·½±ã¸øPvec¸³ÖµÊ±×Ô¶¯ÒÔ¡°£¬¡±·Ö¸ô²ÎÊı
     Pvec=str2num(char(Pstr));%¸ÃÊµÌåµÄÈ«²¿²ÎÊıĞÅÏ¢asciiÂë×ªÎªÊı×Ö, Óöµ½¡°£¬¡±»á×Ô¶¯·Ö¿ª´æ´¢
     
-    fprintf("=> P²¿·ÖĞÅÏ¢ÈçÏÂ£º\n");
+    fprintf('=> P²¿·ÖĞÅÏ¢ÈçÏÂ£º\n');
     % ´æ´¢ÊµÌå
     entty(type)=entty(type)+1;
     % ÒòÎªP²¿·ÖµÄ¸ñÊ½ÊÇ²»¹Ì¶¨µÄ£¬ËùÒÔÒª¸ù¾İ²»Í¬µÄÔªËØ½øĞĞ²»Í¬µÄÊı¾İ½âÎö
@@ -310,7 +310,7 @@ for i=startD:2:endD
         %Ã»ÓĞÉèÖÃÃû×Ö¾Í°´ÕÕ±ê×¼¸ø¶¨Ãû×Ö
         ParameterData{entiall}.name=igesEntiallInfo.getNameByType(type);
     end
-    fprintf("ÀàĞÍ£º%d£¬Ãû³Æ£º%s\nÊÇ·ñÄÜ¹»¶ÁÈ¡£º%s\n\n",...
+    fprintf('ÀàĞÍ£º%d£¬Ãû³Æ£º%s\nÊÇ·ñÄÜ¹»¶ÁÈ¡£º%s\n\n',...
         ParameterData{entiall}.type,ParameterData{entiall}.name,isread);
     
 end
@@ -327,35 +327,35 @@ for i=1:noent
         thisFcn=support_convert_fcns{position};
         [ParameterData,enttyCut]=thisFcn(ParameterData,i);
         entty(ParameterData{i}.type)=entty(ParameterData{i}.type)+enttyCut;
-        fprintf("ÀàĞÍ£º%d£¬Ãû³Æ£º%s\n³É¹¦×ª»¯Îª128ÓĞÀíBÑùÌõÇúÃæ\n\n",...
+        fprintf('ÀàĞÍ£º%d£¬Ãû³Æ£º%s\n³É¹¦×ª»¯Îª128ÓĞÀíBÑùÌõÇúÃæ\n\n',...
             ParameterData{entiall}.type,ParameterData{entiall});
     end
 end
 
 
-fprintf("\n¿ªÊ¼ÅäÖÃÊµÌåÑÕÉ«\n");
+fprintf('\n¿ªÊ¼ÅäÖÃÊµÌåÑÕÉ«\n');
 % ĞŞ¸ÄÊµÌåÑÕÉ«
 mIgesColorUtil=IgesColorUtil(defaultColor);
 for i=1:noent
     if ParameterData{i}.well==0
-        fprintf("²»¿ÉÓÃÊµÌå£º%s(%d)\n",ParameterData{i}.name,ParameterData{i}.type);
+        fprintf('²»¿ÉÓÃÊµÌå£º%s(%d)\n',ParameterData{i}.name,ParameterData{i}.type);
         continue;
     else
-        fprintf("ÕıÔÚĞŞ¸ÄÊµÌåÑÕÉ«£º%s(%d)\n",ParameterData{i}.name,ParameterData{i}.type);
+        fprintf('ÕıÔÚĞŞ¸ÄÊµÌåÑÕÉ«£º%s(%d)\n',ParameterData{i}.name,ParameterData{i}.type);
     end
     if mIgesColorUtil.isNeedHandleColor(ParameterData{i})
         ParameterData{i}=mIgesColorUtil.handleParameterDataColor(ParameterData,i);
     end
 end
-fprintf("\n¿ªÊ¼¼ÆËãÊµÌåÊı¾İ\n");
+fprintf('\n¿ªÊ¼¼ÆËãÊµÌåÊı¾İ\n');
 % ¼ÆËãlength¡¢ratioµÈ²ÎÊı£¨×îºóÒ»²½¼ÆËã£©
 noentII=noent;
 for i=1:noentII
     if ParameterData{i}.well==0
-        fprintf("²»¿ÉÓÃÊµÌå£º%s(%d)\n",ParameterData{i}.name,ParameterData{i}.type);
+        fprintf('²»¿ÉÓÃÊµÌå£º%s(%d)\n',ParameterData{i}.name,ParameterData{i}.type);
         continue;
     else
-        fprintf("ÕıÔÚ¼ÆËãÊµÌåÊı¾İ£º%s(%d)\n",ParameterData{i}.name,ParameterData{i}.type);
+        fprintf('ÕıÔÚ¼ÆËãÊµÌåÊı¾İ£º%s(%d)\n',ParameterData{i}.name,ParameterData{i}.type);
     end
     type=ParameterData{i}.type;
     position=find(support_final_calculation_fcn_types==type);
@@ -363,11 +363,11 @@ for i=1:noentII
         % ¸ÃÀàĞÍĞèÒª½øĞĞ×îÖÕ¼ÆËã
         thisFcn=support_final_calculation_fcns{position};
         ParameterData{i}=thisFcn(ParameterData{i},numPnt,nu,nv);
-        fprintf("ÀàĞÍ£º%d£¬Ãû³Æ£º%s\n³É¹¦½øĞĞ×îÖÕ¼ÆËã\n\n",...
+        fprintf('ÀàĞÍ£º%d£¬Ãû³Æ£º%s\n³É¹¦½øĞĞ×îÖÕ¼ÆËã\n\n',...
             ParameterData{entiall}.type,ParameterData{entiall});
     end
 end
-fprintf("\n¿ªÊ¼»æÍ¼\n");
+fprintf('\n¿ªÊ¼»æÍ¼\n');
 handlePlot=plotIGES(ParameterData, 2, 1, 100, 1, 0, 1, 0);
 % % ¹Ø±ÕËùÓĞÍ¼Ïñ´°¿Ú
 % close all;
@@ -380,13 +380,13 @@ handlePlot=plotIGES(ParameterData, 2, 1, 100, 1, 0, 1, 0);
 % x2=ylabel('YÖá');        %yÖá±êÌâ
 % x3=zlabel('ZÖá');        %zÖá±êÌâ
 %
-% fprintf("\n¿ªÊ¼»æÍ¼\n");
+% fprintf('\n¿ªÊ¼»æÍ¼\n');
 % for j=1:length(ParameterData)
 %     thisEntiall = ParameterData{j};
 %     type = thisEntiall.type;
 %     if thisEntiall.well~=true
-%         fprintf("¸ÃÀàĞÍÔİÊ±ÎŞ·¨´¦Àí£º%s (%d)\n",igesEntiallInfo.getNameByType(type),type);
-%         fprintf("\n");
+%         fprintf('¸ÃÀàĞÍÔİÊ±ÎŞ·¨´¦Àí£º%s (%d)\n',igesEntiallInfo.getNameByType(type),type);
+%         fprintf('\n');
 %         continue;
 %     end
 %     position=find(support_convert_fcn_types==type);
@@ -394,8 +394,8 @@ handlePlot=plotIGES(ParameterData, 2, 1, 100, 1, 0, 1, 0);
 %         thisFcn=support_convert_fcns{position};
 %         thisFcn(thisEntiall);
 %     else
-%         fprintf("¸ÃÀàĞÍÊµÌå»æÖÆÎÄ¼şÈ±Ê§£º%s (%d)\n",igesEntiallInfo.getNameByType(type),type);
+%         fprintf('¸ÃÀàĞÍÊµÌå»æÖÆÎÄ¼şÈ±Ê§£º%s (%d)\n',igesEntiallInfo.getNameByType(type),type);
 %     end
-%     fprintf("\n");
+%     fprintf('\n');
 %
 % end
