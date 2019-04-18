@@ -335,7 +335,7 @@ end
 
 fprintf('\n开始配置实体颜色\n');
 % 修改实体颜色
-mIgesColorUtil=IgesColorUtil(defaultColor);
+mIgesColorUtil=IgesColorUtil(ParameterData,defaultColor);
 for i=1:noent
     if ParameterData{i}.well==0
         fprintf('不可用实体：%s(%d)\n',ParameterData{i}.name,ParameterData{i}.type);
@@ -343,8 +343,8 @@ for i=1:noent
     else
         fprintf('正在修改实体颜色：%s(%d)\n',ParameterData{i}.name,ParameterData{i}.type);
     end
-    if mIgesColorUtil.isNeedHandleColor(ParameterData{i})
-        ParameterData{i}=mIgesColorUtil.handleParameterDataColor(ParameterData,i);
+    if mIgesColorUtil.isNeedHandleColor(ParameterData{i}.type)
+        ParameterData{i}=mIgesColorUtil.handleParameterDataColor(i);
     end
 end
 fprintf('\n开始计算实体数据\n');
