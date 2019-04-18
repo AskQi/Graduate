@@ -1,4 +1,4 @@
-function [res]=ReadEntiall_112(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
+function [res]=ReadEntiall_116(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
 res.type=type;
 % 点实体，在国标P116
 res.name='点';

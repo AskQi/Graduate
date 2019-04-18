@@ -1,4 +1,4 @@
-function handlePlot=plotIGES(ParameterData,srf,fignr,subd,holdoff_flag,fine_flag,plotCrvPnts,srfClr)
+function handlePlot=plotIGES(ParameterData,srf,fignr,subd,holdoff_flag,fine_flag,plotCrvPnts,srfClr,igesEntiallInfo)
 % PLOTIGES 绘制IGES文件中的曲面，曲线和点
 %
 % 简单用法:
@@ -11,8 +11,8 @@ function handlePlot=plotIGES(ParameterData,srf,fignr,subd,holdoff_flag,fine_flag
 %
 % 普通用法:
 %
-% plotIGES(ParameterData,srf,fignr,subd,holdoff_flag)
-% plotIGES(ParameterData, 2, 1, 100, 1, 0, 1, 0)
+% plotIGES(ParameterData,srf,fignr,subd,holdoff_flag,igesEntiallInfo)
+% plotIGES(ParameterData, 2, 1, 100, 1, 0, 1, 0, igesEntiallInfo)
 % 输入:
 %
 % ParameterData - 来自IGES文件的参数数据. ParameterData
@@ -33,11 +33,16 @@ function handlePlot=plotIGES(ParameterData,srf,fignr,subd,holdoff_flag,fine_flag
 %        0, 不绘制曲线和点,
 %        1  绘制曲线和点(default)
 % srfClr - 表面颜色
+% igesEntiallInfo - IGES实体类型和信息处理对象，不适用则不会打印绘制信息
 %
 % 输出:
 %
 % handlePlot - plothandle
-
+if nargin<9
+    printInfo=false;
+else
+    printInfo=true;
+end
 
 if nargin<8
     usrDefClr=false;
@@ -142,10 +147,16 @@ if nargout>0
     
     for i=1:siz
         if ParameterData{i}.well==0
-            fprintf('不支持绘制：%s(%d)\n',ParameterData{i}.name,ParameterData{i}.type);
+            if printInfo
+                entiallInfo=igesEntiallInfo.getEntiallInfo(ParameterData{i});
+                fprintf('不支持绘制：%s\n',entiallInfo);
+            end
             continue;
         else
-            fprintf('正在绘制：%s(%d)\n',ParameterData{i}.name,ParameterData{i}.type);
+            if printInfo
+                entiallInfo=igesEntiallInfo.getEntiallInfo(ParameterData{i});
+                fprintf('正在绘制：%s\n',entiallInfo);
+            end
         end
         [P,isSCP,isSup]=retSrfCrvPnt(2,ParameterData,1,i,subd,3);
         

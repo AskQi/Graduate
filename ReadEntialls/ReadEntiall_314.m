@@ -3,7 +3,7 @@ global defaultColor
 % 颜色实体，在国标P256
 
 res.type=type;
-res.name='颜色';
+res.name='颜色实体';
 
 inn=find(or(Pstr==44,Pstr==59));
 % 三原色百分比，三个值组合起来就是颜色
@@ -26,7 +26,7 @@ end
 
 res.original=1;
 res.well=true;
-fprintf('type：%d，name：%s\ncc1：%s，cc2：%s，cc3：%s\ncname：%s\n',...
+fprintf('类型：%d，名称：%s\ncc1：%s，cc2：%s，cc3：%s\ncname：%s\n',...
     res.type,res.name,res.cc1,...
     res.cc2,res.cc3,res.cname);
 

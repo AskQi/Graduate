@@ -184,4 +184,5 @@ res.y1=Y1;
 res.x2=X2;
 res.y2=Y2;
 
+res.superior=0;
 end
