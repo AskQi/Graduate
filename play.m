@@ -6,6 +6,7 @@ global support_read_fcn_types support_read_fcns...
     defaultColor
 % 调试模式下自动选择默认文件
 isDebugMode=1;
+
 if isDebugMode
     % 加载要绘制的实体，测试时取消注释
     igsfile = 'IGESfiles/example.igs';
@@ -69,6 +70,10 @@ sumDfind=sum(Dfind);
 sumPfind=sum(Pfind);
 sumTfind=sum(Tfind);
 
+%用于处理偏置曲面
+offsetsurfaceExists=false;
+%用于处理变换矩阵
+transformationExists=false;
 
 % 这里加载读取各个实体的模块
 read_entialls_dir = dir('ReadEntialls*');
@@ -303,6 +308,8 @@ for i=startD:2:endD
         ParameterData{entiall}=thisFcn(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr);
         if ParameterData{entiall}.type==124
             transformationExists=true;
+        elseif ParameterData{entiall}.type==140
+            offsetsurfaceExists=true;
         end
     else
         isread='无法读取';
@@ -344,6 +351,15 @@ for i=1:noent
     end
 end
 
+% 处理偏置曲面
+if offsetsurfaceExists
+    fprintf('\n开始处理偏置曲面\n');
+    for i=1:noent
+        if ParameterData{i}.type==140
+            ParameterData=mOffsetSurfaceUtil.handleOffsetSurface(i);
+        end
+    end
+end
 
 fprintf('\n开始配置实体颜色\n');
 % 修改实体颜色
@@ -402,33 +418,4 @@ else
     
 end
 fprintf('\n绘图完成\n');
-% % 关闭所有图像窗口
-% close all;
-% figure
-% hold on;
-% grid on;
-% axis equal
-% title('IGES文件浏览器');
-% x1=xlabel('X轴');        %x轴标题
-% x2=ylabel('Y轴');        %y轴标题
-% x3=zlabel('Z轴');        %z轴标题
-%
-% fprintf('\n开始绘图\n');
-% for j=1:length(ParameterData)
-%     thisEntiall = ParameterData{j};
-%     type = thisEntiall.type;
-%     if thisEntiall.well~=true
-%         fprintf('该类型暂时无法处理：%s (%d)\n',igesEntiallInfo.getNameByType(type),type);
-%         fprintf('\n');
-%         continue;
-%     end
-%     position=find(support_convert_fcn_types==type);
-%     if position>0
-%         thisFcn=support_convert_fcns{position};
-%         thisFcn(thisEntiall);
-%     else
-%         fprintf('该类型实体绘制文件缺失：%s (%d)\n',igesEntiallInfo.getNameByType(type),type);
-%     end
-%     fprintf('\n');
-%
-% end
+
