@@ -74,8 +74,8 @@ sumTfind=sum(Tfind);
 offsetsurfaceExists=false;
 %用于处理变换矩阵
 transformationExists=false;
-
 mat3x3=zeros(3);
+
 % 这里加载读取各个实体的模块
 read_entialls_dir = dir('ReadEntialls*');
 if ~isempty(read_entialls_dir.name), cd(read_entialls_dir.name), end
@@ -413,9 +413,9 @@ for i=1:noentII
 end
 fprintf('\n开始绘图\n');
 if printInfo
-    handlePlot=plotIGES(ParameterData, 2, 1, 100, 1, 0, 1, 0, igesEntiallInfo);
+    handlePlot=plotIGES(ParameterData, 1, 1, 100, 1, 0, 1, 0, igesEntiallInfo);
 else
-    handlePlot=plotIGES(ParameterData, 2, 1, 100, 1, 0, 1, 0);
+    handlePlot=plotIGES(ParameterData, 1, 1, 100, 1, 0, 1, 0);
     
 end
 fprintf('\n绘图完成\n');
