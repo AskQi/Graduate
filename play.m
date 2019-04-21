@@ -3,7 +3,7 @@ clear;
 global support_read_fcn_types support_read_fcns...
     support_convert_fcn_types support_convert_fcns...
     support_final_calculation_fcn_types support_final_calculation_fcns...
-    defaultColor
+    defaultColor mat3x3
 % 调试模式下自动选择默认文件
 isDebugMode=0;
 
@@ -75,6 +75,7 @@ offsetsurfaceExists=false;
 %用于处理变换矩阵
 transformationExists=false;
 
+mat3x3=zeros(3);
 % 这里加载读取各个实体的模块
 read_entialls_dir = dir('ReadEntialls*');
 if ~isempty(read_entialls_dir.name), cd(read_entialls_dir.name), end

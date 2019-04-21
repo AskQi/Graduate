@@ -1,6 +1,7 @@
 function [res]=ReadEntiall_128(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
 res.type=type;
 % 有理B样条曲面，在国标P109
+global mat3x3
 res.name='有理B样条曲面';
 
 A=1+Pvec(2)+Pvec(4);%1+K1+M1，u向节点个数
@@ -103,5 +104,5 @@ res.trnsfrmtnmtrx=transformationMatrixPtr;
 res.clrnmbr=colorNo;
 res.color=[0,0,0];
 
-res.well=false;
+res.well=true;
 end
