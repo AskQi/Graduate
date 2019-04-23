@@ -11,7 +11,8 @@ classdef OffsetSurfaceUtil
             %   此处显示详细说明
             
         end
-        
+    end
+    methods(Static)
         function ParameterData = handleOffsetSurface(ParameterData,i)
             %handleOffsetSurface 处理偏置曲面
             if ParameterData{i}.type==140

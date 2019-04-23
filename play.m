@@ -5,11 +5,11 @@ global support_read_fcn_types support_read_fcns...
     support_final_calculation_fcn_types support_final_calculation_fcns...
     defaultColor mat3x3
 % 调试模式下自动选择默认文件
-isDebugMode=1;
+isDebugMode=0;
 
 if isDebugMode
     % 加载要绘制的实体，测试时取消注释
-    igsfile = 'IGESfiles/example.igs';
+    igsfile = 'IGESfiles/more/carca.igs';
     printInfo=true;
 else
     printInfo=false;
@@ -357,7 +357,7 @@ if offsetsurfaceExists
     fprintf('\n开始处理偏置曲面\n');
     for i=1:noent
         if ParameterData{i}.type==140
-            ParameterData=mOffsetSurfaceUtil.handleOffsetSurface(i);
+            ParameterData=OffsetSurfaceUtil.handleOffsetSurface(ParameterData,i);
         end
     end
 end
