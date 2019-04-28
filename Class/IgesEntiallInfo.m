@@ -5,6 +5,7 @@ classdef IgesEntiallInfo
     end
     methods
         % 初始化
+        % Warming:修改这里不会生效，需啊到play里修改相关代码。
         function obj = IgesEntiallInfo(iges_entiall_file_name)
             [obj.iges_entiall_types,obj.iges_entiall_names]=xlsread(iges_entiall_file_name);
         end

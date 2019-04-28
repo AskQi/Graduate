@@ -5,11 +5,11 @@ global support_read_fcn_types support_read_fcns...
     support_final_calculation_fcn_types support_final_calculation_fcns...
     defaultColor mat3x3
 % 调试模式下自动选择默认文件
-isDebugMode=0;
+isDebugMode=1;
 
 if isDebugMode
     % 加载要绘制的实体，测试时取消注释
-    igsfile = 'IGESfiles/more/carca.igs';
+    igsfile = 'IGESfiles/more/widechord fan.igs';
     printInfo=true;
 else
     printInfo=false;
@@ -37,8 +37,10 @@ end
 c = fread(fid,'uint8=>uint8')';
 fclose(fid);
 % 加载IGES实体信息类
-iges_entiall_file='iges_entiall_info.xlsx';
-igesEntiallInfo=IgesEntiallInfo(iges_entiall_file);
+% iges_entiall_file='iges_entiall_info.xlsx';
+% igesEntiallInfo=IgesEntiallInfo(iges_entiall_file);
+% 加快速度
+load igesEntiallInfo
 
 nwro=sum((c((81:82))==10))+sum((c((81:82))==13));%第81，82个数据为10的个数和为13的个数
 %第81、82个数为iges文件中第一行末尾的换行符和第二行第一个字符的ascii码（换行符（10），回车键（13））
