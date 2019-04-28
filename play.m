@@ -18,13 +18,10 @@ else
     igesdir = dir('IGESfiles*') ;
     if ~isempty(igesdir.name), cd(igesdir.name), end
     
-    [igsfile,igesdir] = uigetfile('*.igs','请选择要加载的IGES文件') ;
+    [igsfile,igesdir] = uigetfile('*.igs;*.iges','请选择要加载的IGES文件') ;
     if ~igsfile
         cd(workingdir);
         return
-    elseif isempty(regexp(igsfile,'\.igs(?!.)','once'))
-        cd(igesdir);
-        error('必须选择一个IGES文件（*.igs）')
     else
         cd(igesdir);
     end
@@ -333,7 +330,7 @@ for i=startD:2:endD
     
 end
 
-% 将其他类型实体转换为NUSBS实体
+% 将其他类型实体转换为NURBS实体
 for i=1:noent
     if ParameterData{i}.well==0
         continue;
@@ -346,7 +343,7 @@ for i=1:noent
         [ParameterData,enttyCut]=thisFcn(ParameterData,i);
         entty(ParameterData{i}.type)=entty(ParameterData{i}.type)+enttyCut;
         if printInfo
-            fprintf('类型：%d，名称：%s\n成功转化为NUSBS实体\n\n',...
+            fprintf('类型：%d，名称：%s\n成功转化为NURBS实体\n\n',...
                 ParameterData{entiall}.type,ParameterData{entiall});
         end
     end
