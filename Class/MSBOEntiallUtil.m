@@ -59,6 +59,7 @@ classdef MSBOEntiallUtil
                                 thisCurvEntiallIndex=(curv+1)/2;
                                 ParameterData{thisCurvEntiallIndex}.clrnmbr=clrnmbr;
                                 % 顶点实体(502)
+                                % TODO:完成顶点部分。
                                 thisSvpEntiallIndex=(svp+1)/2;
                                 ParameterData{thisSvpEntiallIndex}.clrnmbr=clrnmbr;
 
