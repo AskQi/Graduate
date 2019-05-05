@@ -9,7 +9,7 @@ isDebugMode=1;
 
 if isDebugMode
     % 加载要绘制的实体，测试时取消注释
-    igsfile = 'IGESfiles/pointwise.iges';
+    igsfile = 'IGESfiles/ponitwise_2_box.iges';
     printInfo=true;
 else
     printInfo=false;
