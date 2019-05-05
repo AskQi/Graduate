@@ -15,7 +15,7 @@ res.of=Pvec(4);
 
 res.loop=Pvec(5:n+4);
 
-res.colorNo=colorNo;
+res.clrnmbr=colorNo;
 res.transformationMatrixPtr=transformationMatrixPtr;
 res.well=false;
 end

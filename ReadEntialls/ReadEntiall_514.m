@@ -20,7 +20,7 @@ for j=1:n
 end
 
 res.formNo=formNo;
-res.colorNo=colorNo;
+res.clrnmbr=colorNo;
 res.transformationMatrixPtr=transformationMatrixPtr;
 res.well=false;
 end

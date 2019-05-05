@@ -22,7 +22,7 @@ for j=1:n
    point=point+k*2+5;
    res.LoopEntity(j)=thisLoopEntity;
 end
-res.colorNo=colorNo;
+res.clrnmbr=colorNo;
 res.transformationMatrixPtr=transformationMatrixPtr;
 res.well=false;
 end

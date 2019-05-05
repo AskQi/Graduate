@@ -20,7 +20,7 @@ for j=1:n
    res.MSBOEntity(j)=thisMSBOEntity;
 end
 
-res.colorNo=colorNo;
+res.clrnmbr=colorNo;
 res.transformationMatrixPtr=transformationMatrixPtr;
 res.well=false;
 end

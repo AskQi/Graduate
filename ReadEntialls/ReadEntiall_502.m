@@ -17,7 +17,7 @@ for j=1:n
    point=point+3;
    res.VertexEntity(j)=thisVertexEntity;
 end
-res.colorNo=colorNo;
+res.clrnmbr=colorNo;
 res.transformationMatrixPtr=transformationMatrixPtr;
 res.well=false;
 end
