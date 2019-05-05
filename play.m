@@ -9,7 +9,7 @@ isDebugMode=1;
 
 if isDebugMode
     % 加载要绘制的实体，测试时取消注释
-    igsfile = 'IGESfiles/more/widechord fan.igs';
+    igsfile = 'IGESfiles/pointwise.iges';
     printInfo=true;
 else
     printInfo=false;
