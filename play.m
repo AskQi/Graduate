@@ -220,7 +220,10 @@ fprintf('\nG部分加载完成\n');
 %元素个数
 fprintf('\n正在加载D部分和P部分\n');
 noent=round(sumDfind/2);%目录条目段每个实体占两行
+
+% 预分配ParameterData的空间以加快速度
 ParameterData=cell(1,noent);
+
 roP=sumSfind+sumGfind+sumDfind;%参数段的起始位置-1
 
 entty=zeros(1,520);
@@ -239,6 +242,9 @@ for i=startD:2:endD
     entiall=entiall+1;
     Dstr1=c(((i-1)*(80+nwro)+1):(i*(80+nwro)-8-nwro));%该实体第一行除去最后八个字符之外的所有字符
     Dstr2=c((i*(80+nwro)+1):((i+1)*(80+nwro)-8-nwro));%第二行
+    
+    % 当前行在D中的位置（两行中的第一行）
+    thisLineNumberOfD=i-startD+1;
     
     type=str2num(char(Dstr1(1:8)));%把ascii码转换为对应的字符
     transformationMatrixPtr=str2num(char(Dstr1(49:56)));%转换矩阵指针域(转换矩阵用于坐标变换)
@@ -313,7 +319,7 @@ for i=startD:2:endD
         elseif ParameterData{entiall}.type==314
             %颜色实体相关处理。
             thisColor=ParameterData{entiall}.color;
-            thisColorNumber=-(i-startD+1);
+            thisColorNumber=-thisLineNumberOfD;
             colorMap(thisColorNumber)=thisColor;
 %             colorDict.(strcat('c',num2str(thisColorNumber)))=thisColor;
             fprintf('添加颜色（%d）\n',thisColorNumber);
@@ -336,6 +342,7 @@ for i=startD:2:endD
         %没有设置名字就按照标准给定名字
         ParameterData{entiall}.name=igesEntiallInfo.getNameByType(type);
     end
+    
     if printInfo
         fprintf('类型：%d，名称：%s\n是否能够读取：%s\n\n',...
             ParameterData{entiall}.type,ParameterData{entiall}.name,isread);
