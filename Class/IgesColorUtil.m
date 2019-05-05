@@ -1,14 +1,15 @@
 classdef IgesColorUtil
     properties
         entities2color;
+        colorMap;
         defaultColor;
-        ParameterData;
     end
     methods
-        function obj = IgesColorUtil(ParameterData,defaultColor)
-            obj.entities2color=[102 110 116 126 128];
+        function obj = IgesColorUtil(colorMap,defaultColor)
+            obj.entities2color=[102 104 110 112 114 116 118 120 122 124 ...
+                126 128 130 140 186 502 504 508 510 514];
+            obj.colorMap=colorMap;
             obj.defaultColor=defaultColor;
-            obj.ParameterData=ParameterData;
         end
         function isNeedHandle=isNeedHandleColor(obj,type)
             if any(type==obj.entities2color)
@@ -17,39 +18,41 @@ classdef IgesColorUtil
                 isNeedHandle=false;
             end
         end
-        function thisEntiall=handleParameterDataColor(obj,i)
-            if any(obj.ParameterData{i}.type==obj.entities2color)
-                if obj.ParameterData{i}.well
-                    if obj.ParameterData{i}.clrnmbr>0
+        function thisEntiall=handleParameterDataColor(obj,thisEntiall)
+            if any(thisEntiall.type==obj.entities2color)
+                if thisEntiall.well
+                    clrnmbr=thisEntiall.clrnmbr;
+                    if clrnmbr>0
                         % Color代码
-                        if obj.ParameterData{i}.clrnmbr==2
-                            obj.ParameterData{i}.color(1)=1;
-                        elseif obj.ParameterData{i}.clrnmbr==3
-                            obj.ParameterData{i}.color(2)=1;
-                        elseif obj.ParameterData{i}.clrnmbr==4
-                            obj.ParameterData{i}.color(3)=1;
-                        elseif obj.ParameterData{i}.clrnmbr==5
-                            obj.ParameterData{i}.color(1)=1;
-                            obj.ParameterData{i}.color(2)=1;
-                        elseif obj.ParameterData{i}.clrnmbr==6
-                            obj.ParameterData{i}.color(1)=1;
-                            obj.ParameterData{i}.color(3)=1;
-                        elseif obj.ParameterData{i}.clrnmbr==7
-                            obj.ParameterData{i}.color(2)=1;
-                            obj.ParameterData{i}.color(3)=1;
-                        elseif obj.ParameterData{i}.clrnmbr==8
-                            obj.ParameterData{i}.color(:)=1;
+                        if clrnmbr==2
+                            thisEntiall.color(1)=1;
+                        elseif clrnmbr==3
+                            thisEntiall.color(2)=1;
+                        elseif clrnmbr==4
+                            thisEntiall.color(3)=1;
+                        elseif clrnmbr==5
+                            thisEntiall.color(1)=1;
+                            thisEntiall.color(2)=1;
+                        elseif clrnmbr==6
+                            thisEntiall.color(1)=1;
+                            thisEntiall.color(3)=1;
+                        elseif clrnmbr==7
+                            thisEntiall.color(2)=1;
+                            thisEntiall.color(3)=1;
+                        elseif clrnmbr==8
+                            thisEntiall.color(:)=1;
                         end
-                    elseif obj.ParameterData{i}.clrnmbr==0
+                    elseif clrnmbr==0
                         % 默认颜色
-                        obj.ParameterData{i}.color(:)=obj.defaultColor;
+                        thisEntiall.color(:)=obj.defaultColor;
                     else
-                        % 314实体中的颜色
-                        obj.ParameterData{i}.color(:)=obj.ParameterData{-obj.ParameterData{i}.clrnmbr}.color;
+                        if any(clrnmbr==cell2mat(keys(obj.colorMap)))
+                            % 314实体中的颜色
+                            thisEntiall.color(:)=obj.colorMap(clrnmbr);
+                        end
                     end
                 end
             end
-			thisEntiall=obj.ParameterData{i};
         end
     end
 end

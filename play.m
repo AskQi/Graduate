@@ -3,13 +3,13 @@ clear;
 global support_read_fcn_types support_read_fcns...
     support_convert_fcn_types support_convert_fcns...
     support_final_calculation_fcn_types support_final_calculation_fcns...
-    defaultColor mat3x3
+    mat3x3
 % 调试模式下自动选择默认文件
 isDebugMode=1;
 
 if isDebugMode
     % 加载要绘制的实体，测试时取消注释
-    igsfile = 'IGESfiles/ponitwise_2_box.iges';
+    igsfile = 'IGESfiles/ponitwise_3_box.iges';
     printInfo=true;
 else
     printInfo=false;
@@ -227,6 +227,8 @@ entty=zeros(1,520);
 
 % Default color
 defaultColor=[0.8,0.8,0.9];
+% 存储颜色
+colorMap=containers.Map('KeyType','int32','ValueType','any');
 
 % 开始读取数据
 entiall=0;
@@ -255,9 +257,7 @@ for i=startD:2:endD
     if transformationMatrixPtr>0
         transformationMatrixPtr=round((transformationMatrixPtr+1)/2);
     end
-    if colorNo<0%颜色号指针为负
-        colorNo=-round((-colorNo+1)/2);
-    end
+    
     if printInfo
         D1_Description={'元素类型号','参数指针','版本',...
             '线型','图层','视图','变换矩阵',...
@@ -310,6 +310,17 @@ for i=startD:2:endD
             transformationExists=true;
         elseif ParameterData{entiall}.type==140
             offsetsurfaceExists=true;
+        elseif ParameterData{entiall}.type==314
+            %颜色实体相关处理。
+            thisColor=ParameterData{entiall}.color;
+            thisColorNumber=-(i-startD+1);
+            colorMap(thisColorNumber)=thisColor;
+%             colorDict.(strcat('c',num2str(thisColorNumber)))=thisColor;
+            fprintf('添加颜色（%d）\n',thisColorNumber);
+            if isempty(ParameterData{entiall}.cname)
+                ParameterData{entiall}.cname=num2str(thisColorNumber);
+            end
+            
         end
     else
         isread='无法读取';
@@ -363,7 +374,7 @@ end
 
 fprintf('\n开始配置实体颜色\n');
 % 修改实体颜色
-mIgesColorUtil=IgesColorUtil(ParameterData,defaultColor);
+mIgesColorUtil=IgesColorUtil(colorMap,defaultColor);
 for i=1:noent
     if printInfo
         entiallInfo=igesEntiallInfo.getEntiallInfo(ParameterData{i});
@@ -379,7 +390,7 @@ for i=1:noent
         end
     end
     if mIgesColorUtil.isNeedHandleColor(ParameterData{i}.type)
-        ParameterData{i}=mIgesColorUtil.handleParameterDataColor(i);
+        ParameterData{i}=mIgesColorUtil.handleParameterDataColor(ParameterData{i});
     end
 end
 fprintf('\n开始计算实体数据\n');
