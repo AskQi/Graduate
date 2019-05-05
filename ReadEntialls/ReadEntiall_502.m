@@ -18,6 +18,7 @@ for j=1:n
    res.VertexEntity(j)=thisVertexEntity;
 end
 res.clrnmbr=colorNo;
+res.color=[0,0,0];
 res.transformationMatrixPtr=transformationMatrixPtr;
 res.well=true;
 end
