@@ -6,7 +6,7 @@ classdef IgesColorUtil
     end
     methods
         function obj = IgesColorUtil(colorMap,defaultColor)
-            obj.entities2color=[102 104 110 112 114 116 118 120 122 124 ...
+            obj.entities2color=[102 104 110 112 114 116 118 120 122 ...
                 126 128 130 140 186 502 504 508 510 514];
             obj.colorMap=colorMap;
             obj.defaultColor=defaultColor;
