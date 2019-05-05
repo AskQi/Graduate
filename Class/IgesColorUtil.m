@@ -24,7 +24,9 @@ classdef IgesColorUtil
                     clrnmbr=thisEntiall.clrnmbr;
                     if clrnmbr>0
                         % Color´úÂë
-                        if clrnmbr==2
+                        if clrnmbr==1
+                            thisEntiall.color(:)=0;
+                        elseif clrnmbr==2
                             thisEntiall.color(1)=1;
                         elseif clrnmbr==3
                             thisEntiall.color(2)=1;
