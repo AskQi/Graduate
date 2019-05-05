@@ -12,16 +12,16 @@ res.n=n;
 point=2;
 
 for j=1:n
-   thisLineEntiall.type=Pvec(point+1);
-   thisLineEntiall.edge=Pvec(point+2);
-   thisLineEntiall.ndx=Pvec(point+3);
-   thisLineEntiall.of=Pvec(point+4);
+   thisLineAndEdgeEntiall.type=Pvec(point+1);
+   thisLineAndEdgeEntiall.edge=Pvec(point+2);
+   thisLineAndEdgeEntiall.ndx=Pvec(point+3);
+   thisLineAndEdgeEntiall.of=Pvec(point+4);
    k=Pvec(point+5);
-   thisLineEntiall.k=k;
-   thisLineEntiall.ISOP=Pvec(point+6:2:point+k*2+5);
-   thisLineEntiall.CURV=Pvec(point+7:2:point+k*2+5);
+   thisLineAndEdgeEntiall.k=k;
+   thisLineAndEdgeEntiall.ISOP=Pvec(point+6:2:point+k*2+5);
+   thisLineAndEdgeEntiall.CURV=Pvec(point+7:2:point+k*2+5);
    point=point+k*2+5;
-   res.LineEntiall(j)=thisLineEntiall;
+   res.LineAndEdgeEntiall(j)=thisLineAndEdgeEntiall;
 end
 res.clrnmbr=colorNo;
 res.transformationMatrixPtr=transformationMatrixPtr;

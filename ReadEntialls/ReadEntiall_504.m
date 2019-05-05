@@ -11,12 +11,13 @@ res.n=n;
 
 point=2;
 for j=1:n
-   thisEdgeEntity.curv=Pvec(point+1);
-   thisEdgeEntity.svp=Pvec(point+2);
-   thisEdgeEntity.tvp=Pvec(point+3);
-   thisEdgeEntity.tv=Pvec(point+4);
-   point=point+4;
-   res.EdgeEntity(j)=thisEdgeEntity;
+   thisEdgeEntiall.curv=Pvec(point+1);
+   thisEdgeEntiall.svp=Pvec(point+2);
+   thisEdgeEntiall.sv=Pvec(point+3);
+   thisEdgeEntiall.tvp=Pvec(point+4);
+   thisEdgeEntiall.tv=Pvec(point+5);
+   point=point+5;
+   res.EdgeEntiall(j)=thisEdgeEntiall;
 end
 res.formNo=formNo;
 res.clrnmbr=colorNo;

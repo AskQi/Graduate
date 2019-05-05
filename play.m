@@ -5,11 +5,11 @@ global support_read_fcn_types support_read_fcns...
     support_final_calculation_fcn_types support_final_calculation_fcns...
     mat3x3
 % 调试模式下自动选择默认文件
-isDebugMode=1;
+isDebugMode=0;
 
 if isDebugMode
     % 加载要绘制的实体，测试时取消注释
-    igsfile = 'IGESfiles/ponitwise_3_box.iges';
+    igsfile = 'IGESfiles/ansys.igs';
     printInfo=true;
 else
     printInfo=false;
