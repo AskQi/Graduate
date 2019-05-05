@@ -12,17 +12,18 @@ res.n=n;
 point=2;
 
 for j=1:n
-   thisLoopEntity.type=Pvec(point+1);
-   thisLoopEntity.edge=Pvec(point+2);
-   thisLoopEntity.ndx=Pvec(point+3);
-   thisLoopEntity.of=Pvec(point+4);
+   thisLineEntiall.type=Pvec(point+1);
+   thisLineEntiall.edge=Pvec(point+2);
+   thisLineEntiall.ndx=Pvec(point+3);
+   thisLineEntiall.of=Pvec(point+4);
    k=Pvec(point+5);
-   thisLoopEntity.k=k;
-   thisLoopEntity.ISOP_CURV=Pvec(point+6:point+k*2+5);
+   thisLineEntiall.k=k;
+   thisLineEntiall.ISOP=Pvec(point+6:2:point+k*2+5);
+   thisLineEntiall.CURV=Pvec(point+7:2:point+k*2+5);
    point=point+k*2+5;
-   res.LoopEntity(j)=thisLoopEntity;
+   res.LineEntiall(j)=thisLineEntiall;
 end
 res.clrnmbr=colorNo;
 res.transformationMatrixPtr=transformationMatrixPtr;
-res.well=false;
+res.well=true;
 end

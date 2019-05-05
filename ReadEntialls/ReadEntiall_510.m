@@ -2,7 +2,7 @@ function [res]=ReadEntiall_510(Pstr,Pvec,type,colorNo,formNo,transformationMatri
 res.type=type;
 % 面实体，在国标P403
 
-res.name='环实体';
+res.name='面实体';
 res.original=1;
 res.superior=1;
 
@@ -17,5 +17,5 @@ res.loop=Pvec(5:n+4);
 
 res.clrnmbr=colorNo;
 res.transformationMatrixPtr=transformationMatrixPtr;
-res.well=false;
+res.well=true;
 end

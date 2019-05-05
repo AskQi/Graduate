@@ -19,5 +19,5 @@ for j=1:n
 end
 res.clrnmbr=colorNo;
 res.transformationMatrixPtr=transformationMatrixPtr;
-res.well=false;
+res.well=true;
 end

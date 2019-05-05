@@ -21,5 +21,5 @@ end
 res.formNo=formNo;
 res.clrnmbr=colorNo;
 res.transformationMatrixPtr=transformationMatrixPtr;
-res.well=false;
+res.well=true;
 end

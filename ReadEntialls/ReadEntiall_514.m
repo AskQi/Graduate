@@ -13,14 +13,14 @@ res.n=n;
 point=2;
 
 for j=1:n
-   thisShellEntity.face=Pvec(point+1);
-   thisShellEntity.of=Pvec(point+2);
+   thisFaceEntiall.face=Pvec(point+1);
+   thisFaceEntiall.of=Pvec(point+2);
    point=point+2;
-   res.ShellEntity(j)=thisShellEntity;
+   res.FaceEntiall(j)=thisFaceEntiall;
 end
 
 res.formNo=formNo;
 res.clrnmbr=colorNo;
 res.transformationMatrixPtr=transformationMatrixPtr;
-res.well=false;
+res.well=true;
 end
