@@ -21,6 +21,7 @@ for j=1:n
 end
 
 res.clrnmbr=colorNo;
+res.color=[0,0,0];
 res.transformationMatrixPtr=transformationMatrixPtr;
-res.well=false;
+res.well=true;
 end
