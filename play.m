@@ -224,6 +224,9 @@ noent=round(sumDfind/2);%目录条目段每个实体占两行
 % 预分配ParameterData的空间以加快速度
 ParameterData=cell(1,noent);
 
+% 用于存储D中186实体所在的i
+indexOfMSBOEntty=[];
+
 roP=sumSfind+sumGfind+sumDfind;%参数段的起始位置-1
 
 entty=zeros(1,520);
@@ -316,6 +319,8 @@ for i=startD:2:endD
             transformationExists=true;
         elseif ParameterData{entiall}.type==140
             offsetsurfaceExists=true;
+        elseif ParameterData{entiall}.type==186
+            indexOfMSBOEntty=[indexOfMSBOEntty,entiall];
         elseif ParameterData{entiall}.type==314
             %颜色实体相关处理。
             thisColor=ParameterData{entiall}.color;
@@ -379,6 +384,16 @@ if offsetsurfaceExists
     end
 end
 
+% 对于存在186实体的使各个实体的颜色各不相同
+if entty(186)>0
+    fprintf('\n开始转换186相关实体颜色\n');
+    % TODO:186相关实体处理
+    for j=1:entty(186)
+        thisIndex=indexOfMSBOEntty(j);
+        ParameterData=MSBOEntiallUtil.handleMSBOEntiall(ParameterData,thisIndex,j+1);        
+    end
+end
+
 fprintf('\n开始配置实体颜色\n');
 % 修改实体颜色
 mIgesColorUtil=IgesColorUtil(colorMap,defaultColor);
@@ -400,6 +415,7 @@ for i=1:noent
         ParameterData{i}=mIgesColorUtil.handleParameterDataColor(ParameterData{i});
     end
 end
+
 fprintf('\n开始计算实体数据\n');
 % 计算length、ratio等参数（最后一步计算）
 noentII=noent;
