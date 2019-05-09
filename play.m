@@ -390,7 +390,7 @@ if entty(186)>0
     % TODO:186相关实体处理
     for j=1:entty(186)
         thisIndex=indexOfMSBOEntty(j);
-        ParameterData=MSBOEntiallUtil.handleMSBOEntiall(ParameterData,thisIndex,j);        
+        ParameterData=MSBOEntiallUtil().handleMSBOEntiall(ParameterData,thisIndex,j);        
     end
 end
 

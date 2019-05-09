@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_140(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-res.type=type;
 % 偏置曲面，在国标P130
+res.type=type;
 res.name='偏置曲面';
 
 res.original=1;

@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_112(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-res.type=type;
 % 参数样条曲线，在国标P87
+res.type=type;
 res.name='参数样条曲线';
 res.original=1;
 res.superior=0;

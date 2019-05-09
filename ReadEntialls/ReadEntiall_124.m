@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_124(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-res.type=type;
 % 变换矩阵，在国标P100
+res.type=type;
 
 res.name='变换矩阵';
 

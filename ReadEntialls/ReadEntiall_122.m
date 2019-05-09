@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_122(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-res.type=type;
 % 列表柱面，相关资料在国标P98
+res.type=type;
 res.name='列表柱面';
 
 res.original=1;

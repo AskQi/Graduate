@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_508(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-res.type=type;
 % 环实体，在国标P402
+res.type=type;
 
 res.name='环实体';
 res.original=1;

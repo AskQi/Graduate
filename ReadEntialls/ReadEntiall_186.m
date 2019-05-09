@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_186(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-res.type=type;
 % 流形实体B-Rep对象实体，在国标P158
+res.type=type;
 
 res.name='流形实体B-Rep对象实体';
 res.original=1;

@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_502(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-res.type=type;
 % 顶点实体，在国标P399
+res.type=type;
 
 res.name='顶点实体';
 res.original=1;
@@ -11,11 +11,11 @@ res.n=n;
 
 point=2;
 for j=1:n
-   thisVertexEntity.x=Pvec(point+1);
-   thisVertexEntity.y=Pvec(point+2);
-   thisVertexEntity.z=Pvec(point+3);
+   thisVertexEntiall.x=Pvec(point+1);
+   thisVertexEntiall.y=Pvec(point+2);
+   thisVertexEntiall.z=Pvec(point+3);
    point=point+3;
-   res.VertexEntity(j)=thisVertexEntity;
+   res.VertexEntiall(j)=thisVertexEntiall;
 end
 res.clrnmbr=colorNo;
 res.color=[0,0,0];

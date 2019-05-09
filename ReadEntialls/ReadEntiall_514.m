@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_514(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-res.type=type;
 % 壳实体，在国标P405
+res.type=type;
 
 res.name='壳实体';
 res.original=1;

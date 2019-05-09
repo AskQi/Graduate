@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_510(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-res.type=type;
 % 面实体，在国标P403
+res.type=type;
 
 res.name='面实体';
 res.original=1;

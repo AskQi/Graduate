@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_118(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-res.type=type;
 % 直纹面实体，相关资料在国标P94，采用格式1（相对参数值）
+res.type=type;
 res.name='直纹面';
 
 res.original=1;

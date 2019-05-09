@@ -1,7 +1,7 @@
 function [res]=ReadEntiall_106(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-res.type=type;
 % 2D路径、3D路径简单封封闭平面曲线，实体在各种iges文件中都没找到
 % 11和12在国标P76,61在国标P82
+res.type=type;
 
 ip=Pvec(2);
 n=Pvec(3);

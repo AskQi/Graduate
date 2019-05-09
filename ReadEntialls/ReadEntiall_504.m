@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_504(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-res.type=type;
 % 边实体，在国标P400
+res.type=type;
 
 res.name='边实体';
 res.original=1;

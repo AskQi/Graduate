@@ -1,6 +1,6 @@
 function [res]=ReadEntiall_120(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-res.type=type;
 % 回转曲面，相关资料在国标P97
+res.type=type;
 res.name='回转曲面';
 
 res.original=1;

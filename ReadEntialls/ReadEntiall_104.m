@@ -1,6 +1,8 @@
 function [res]=ReadEntiall_104(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr)
-res.type=type;
 % 圆锥曲线实体，在国标P71
+
+res.type=type;
+
 A=Pvec(2);
 B=Pvec(3);
 C=Pvec(4);
