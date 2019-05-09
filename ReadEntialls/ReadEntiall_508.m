@@ -24,6 +24,6 @@ for j=1:n
    res.LineAndEdgeEntiall(j)=thisLineAndEdgeEntiall;
 end
 res.clrnmbr=colorNo;
-res.transformationMatrixPtr=transformationMatrixPtr;
+res.trnsfrmtnmtrx=transformationMatrixPtr;
 res.well=true;
 end

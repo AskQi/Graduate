@@ -21,6 +21,6 @@ for j=1:n
 end
 res.formNo=formNo;
 res.clrnmbr=colorNo;
-res.transformationMatrixPtr=transformationMatrixPtr;
+res.trnsfrmtnmtrx=transformationMatrixPtr;
 res.well=true;
 end

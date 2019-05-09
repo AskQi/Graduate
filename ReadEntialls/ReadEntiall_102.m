@@ -15,5 +15,6 @@ res.color=[0,0,0];
 res.numcrvcnt=zeros(1,Pvec(2));
 res.numcrv=0;
 
+res.trnsfrmtnmtrx=transformationMatrixPtr;
 res.well=true;
 end
