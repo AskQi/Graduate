@@ -31,50 +31,50 @@ classdef MSBOEntiallUtil
         function ParameterData = handleShellEntiall(obj,ParameterData,...
                 thisShellEntiallIndex,clrnmbr)
             
-            %             设置该壳的颜色
+            % 设置该壳的颜色
             ParameterData{thisShellEntiallIndex}.clrnmbr=clrnmbr;
-            %             获得壳实体
+            % 获得壳实体
             thisShellEntiall=ParameterData{thisShellEntiallIndex};
             
-            %             获得壳的参数数据（face和of）
+            % 获得壳的参数数据（face和of）
             thisFaceEntiallStruct(:)=thisShellEntiall.FaceEntiall;
             for j=1:length(thisFaceEntiallStruct)
-                %                 获得当前面的指针
+                % 获得当前面的指针
                 thisFaceEntiallIndex=(thisFaceEntiallStruct(j).face+1)/2;
-                %                 修改当前面的颜色
+                % 修改当前面的颜色
                 ParameterData{thisFaceEntiallIndex}.clrnmbr=clrnmbr;
-                %                 获得当前面实体
+                % 获得当前面实体
                 thisFaceEntiall=ParameterData{thisFaceEntiallIndex};
-                %                 获得环实体的指针数组
+                % 获得环实体的指针数组
                 thisLoopEntiallIndexs=(thisFaceEntiall.loop+1)/2;
                 for jj=1:thisFaceEntiall.n
-                    %                     当前环实体的指针
+                    % 当前环实体的指针
                     thisLoopEntiallIndex=thisLoopEntiallIndexs(jj);
-                    %                     修改当前环实体的颜色
+                    % 修改当前环实体的颜色
                     ParameterData{thisLoopEntiallIndex}.clrnmbr=clrnmbr;
-                    %                     获得当前环实体
+                    % 获得当前环实体
                     thisLoopEntiall=ParameterData{thisLoopEntiallIndex};
-                    %                     获取当前环中的线和边实体的结构
+                    % 获取当前环中的线和边实体的结构
                     thisLineAndEdgeEntiallStruct(:)=thisLoopEntiall.LineAndEdgeEntiall;
                     for jjj=1:thisLoopEntiall.n
-                        %                         线
+                        % 线
                         curv=thisLineAndEdgeEntiallStruct(jjj).CURV;
-                        %                         边
+                        % 边
                         edge=thisLineAndEdgeEntiallStruct(jjj).edge;
                         ndx=thisLineAndEdgeEntiallStruct(jjj).ndx;
                         if ~isempty(curv)
-                            %                             修改线的颜色
+                            % 修改线的颜色
                             thisLineEntiallIndex=(curv+1)/2;
                             ParameterData{thisLineEntiallIndex}.clrnmbr=clrnmbr;
                         end
                         if ~isempty(edge)
-                            %                             修改边的颜色
+                            % 修改边的颜色
                             thisEdgeEntiallIndex=(edge+1)/2;
                             
                             ParameterData{thisEdgeEntiallIndex}.clrnmbr=clrnmbr;
-                            %                             获得边实体
+                            % 获得边实体
                             thisEdgeEntiall=ParameterData{thisEdgeEntiallIndex};
-                            %                             获得边实体的结构体
+                            % 获得边实体的结构体
                             thisEdgeEntiallStruct(:)=thisEdgeEntiall.EdgeEntiall;
                             for jjjj=1:thisEdgeEntiall.n
                                 % 曲线的DE指针
