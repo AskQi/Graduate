@@ -14,10 +14,10 @@ res.n=n;
 
 point=4;
 for j=1:n
-   thisMSBOEntity.void=Pvec(point+1);
-   thisMSBOEntity.vof=Pvec(point+2);
+   thisVoidShellEntity.void=Pvec(point+1);
+   thisVoidShellEntity.vof=Pvec(point+2);
    point=point+2;
-   res.MSBOEntity(j)=thisMSBOEntity;
+   res.VoidShellEntity(j)=thisVoidShellEntity;
 end
 
 res.clrnmbr=colorNo;
