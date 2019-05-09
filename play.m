@@ -9,7 +9,7 @@ isDebugMode=1;
 
 if isDebugMode
     % 加载要绘制的实体，测试时取消注释
-    igsfile = 'IGESfiles/ponitwise_3_box.iges';
+    igsfile = 'IGESfiles/pointwise.iges';
     printInfo=true;
 else
     printInfo=false;
@@ -356,6 +356,7 @@ for i=startD:2:endD
 end
 
 % 将其他类型实体转换为NURBS实体
+fprintf('\n开始处理实体类型转换\n');
 for i=1:noent
     if ParameterData{i}.well==0
         continue;
