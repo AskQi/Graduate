@@ -1,10 +1,7 @@
 classdef MSBOEntiallUtil
     % 用于处理所有MSBO实体及其子实体的颜色
-    % 由于不熟悉matlab的面向对象，按理说这两个函数应该放在MSBOEntiallUtil.m的静态方法里
-    methods
-        function obj=MSBOEntiallUtil()
-        end
-        function ParameterData = handleMSBOEntiall(obj,ParameterData,...
+    methods(Static)
+        function ParameterData = handleMSBOEntiall(ParameterData,...
                 thisMSBOEntiallIndex,clrnmbr)
             % 获得该186实体的信息
             thisMSBOEntiall=ParameterData{thisMSBOEntiallIndex};
@@ -12,7 +9,7 @@ classdef MSBOEntiallUtil
             ParameterData{thisMSBOEntiallIndex}.clrnmbr=clrnmbr;
             % 该186实体指向壳的指针
             thisShellEntiallIndex=(thisMSBOEntiall.shell+1)/2;
-            ParameterData=obj.handleShellEntiall(ParameterData,...
+            ParameterData=MSBOEntiallUtil.handleShellEntiall(ParameterData,...
                 thisShellEntiallIndex,clrnmbr);
             
             % 说明：这里对于洞壳的处理可能并不合适，因为没有找到合适的实例
@@ -22,13 +19,13 @@ classdef MSBOEntiallUtil
                 for j=1:thisMSBOEntiall.n
                     % 这里处理洞壳
                     thisShellEntiallIndex=(thisVoidShellEntityStruct(j).void+1)/2;
-                    ParameterData=obj.handleShellEntiall(ParameterData,...
+                    ParameterData=MSBOEntiallUtil.handleShellEntiall(ParameterData,...
                         thisShellEntiallIndex,clrnmbr);
                 end
             end
         end
         
-        function ParameterData = handleShellEntiall(obj,ParameterData,...
+        function ParameterData = handleShellEntiall(ParameterData,...
                 thisShellEntiallIndex,clrnmbr)
             
             % 设置该壳的颜色
@@ -55,7 +52,8 @@ classdef MSBOEntiallUtil
                     % 获得当前环实体
                     thisLoopEntiall=ParameterData{thisLoopEntiallIndex};
                     % 获取当前环中的线和边实体的结构
-                    thisLineAndEdgeEntiallStruct(:)=thisLoopEntiall.LineAndEdgeEntiall;
+                    thisLineAndEdgeEntiallStruct(:)=...
+                        thisLoopEntiall.LineAndEdgeEntiall;
                     for jjj=1:thisLoopEntiall.n
                         % 线
                         curv=thisLineAndEdgeEntiallStruct(jjj).CURV;
@@ -89,15 +87,20 @@ classdef MSBOEntiallUtil
                                 tv=thisEdgeEntiallStruct(jjjj).tv;
                                 
                                 thisCurvEntiallIndex=(curv+1)/2;
-                                ParameterData{thisCurvEntiallIndex}.clrnmbr=clrnmbr;
+                                ParameterData{thisCurvEntiallIndex}.clrnmbr=...
+                                    clrnmbr;
                                 % 顶点实体(502)
                                 % TODO:完成顶点部分。
                                 thisSvpEntiallIndex=(svp+1)/2;
-                                ParameterData{thisSvpEntiallIndex}.clrnmbr=clrnmbr;
-                                
-                                thisSvEntiallIndex=(sv+1)/2;
                                 thisTvpEntiallIndex=(tvp+1)/2;
-                                thisTvEntiallIndex=(tv+1)/2;
+                                % 修改该顶点的颜色
+                                ParameterData{thisSvpEntiallIndex}.VertexEntiall...
+                                    (sv).clrnmbr=clrnmbr;
+                                ParameterData{thisTvpEntiallIndex}.VertexEntiall...
+                                    (tv).clrnmbr=clrnmbr;
+                                
+                                
+                                
                                 % 顶点实体结束
                                 
                             end

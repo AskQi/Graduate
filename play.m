@@ -5,7 +5,7 @@ global support_read_fcn_types support_read_fcns...
     support_final_calculation_fcn_types support_final_calculation_fcns...
     mat3x3
 % 调试模式下自动选择默认文件
-isDebugMode=1;
+isDebugMode=0;
 
 if isDebugMode
     % 加载要绘制的实体，测试时取消注释
@@ -391,9 +391,12 @@ if entty(186)>0
     % TODO:186相关实体处理
     for j=1:entty(186)
         thisIndex=indexOfMSBOEntty(j);
-        ParameterData=MSBOEntiallUtil().handleMSBOEntiall(ParameterData,thisIndex,j);        
+        ParameterData=MSBOEntiallUtil.handleMSBOEntiall(ParameterData,thisIndex,j);        
     end
 end
+
+% 处理顶点实体，将其转换为一个个点。
+ParameterData=VertexEntiallUtil.handleVertexEntiallUtil(ParameterData,noent);
 
 fprintf('\n开始配置实体颜色\n');
 % 修改实体颜色
