@@ -2,7 +2,7 @@ clc
 clear;
 
 % 调试模式下自动选择默认文件
-isDebugMode=0;
+isDebugMode=1;
 
 if isDebugMode
     % 加载要绘制的实体，测试时取消注释
@@ -23,7 +23,8 @@ else
         cd(igesdir);
     end
     cd(workingdir);
+    igsfile=strcat(igesdir,igsfile);
 end
-igsfile=strcat(igesdir,igsfile);
 
-playIGES(igsfile,isDebugMode);
+
+playIGES(igsfile,isDebugMode,1,100,0);
