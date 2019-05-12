@@ -1,32 +1,11 @@
-clc;
-clear;
+function playIGES(igsfile,isDebugMode)
 global support_read_fcn_types support_read_fcns...
     support_convert_fcn_types support_convert_fcns...
     support_final_calculation_fcn_types support_final_calculation_fcns...
     mat3x3
-% 调试模式下自动选择默认文件
-isDebugMode=0;
 
-if isDebugMode
-    % 加载要绘制的实体，测试时取消注释
-    igsfile = 'IGESfiles/pointwise.iges';
-    printInfo=true;
-else
-    printInfo=false;
-    % 选择要绘制的IGES文件
-    workingdir = pwd ;
-    igesdir = dir('IGESfiles*') ;
-    if ~isempty(igesdir.name), cd(igesdir.name), end
-    
-    [igsfile,igesdir] = uigetfile('*.igs;*.iges','请选择要加载的IGES文件') ;
-    if ~igsfile
-        cd(workingdir);
-        return
-    else
-        cd(igesdir);
-    end
-    cd(workingdir);
-end
+%如果使用调试模式就现实所有输出信息
+printInfo=isDebugMode;
 % 将当前文件夹下的所有文件夹都包括进调用函数的目录
 addpath(genpath(pwd));
 fprintf('文件名：%s\n',igsfile);
@@ -40,7 +19,7 @@ fclose(fid);
 % iges_entiall_file='iges_entiall_info.xlsx';
 % igesEntiallInfo=IgesEntiallInfo(iges_entiall_file);
 % 加快速度
-load igesEntiallInfo
+load 'igesEntiallInfo.mat';
 
 nwro=sum((c((81:82))==10))+sum((c((81:82))==13));%第81，82个数据为10的个数和为13的个数
 %第81、82个数为iges文件中第一行末尾的换行符和第二行第一个字符的ascii码（换行符（10），回车键（13））
@@ -457,3 +436,5 @@ else
 end
 fprintf('\n绘图完成\n');
 
+
+end
