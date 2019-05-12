@@ -24,4 +24,6 @@ else
     end
     cd(workingdir);
 end
+igsfile=strcat(igesdir,igsfile);
+
 playIGES(igsfile,isDebugMode);

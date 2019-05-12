@@ -114,6 +114,7 @@ else
     cd(igesdir);
 end
 cd(workingdir);
+igsfile=strcat(igesdir,igsfile);
 set(handles.edit1,'String',igsfile);
 % --- Executes on button press in checkbox1.
 function checkbox1_Callback(hObject, eventdata, handles)
