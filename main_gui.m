@@ -22,7 +22,7 @@ function varargout = main_gui(varargin)
 
 % Edit the above text to modify the response to help main_gui
 
-% Last Modified by GUIDE v2.5 12-May-2019 13:52:02
+% Last Modified by GUIDE v2.5 12-May-2019 21:55:13
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -131,11 +131,27 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 clc
-isDebugMode=get(handles.checkbox1,'Value');
-igsfile=get(handles.edit1,'String');
 gui_locker(handles,true);
 
-playIGES(igsfile,isDebugMode);
+isDebugMode=get(handles.checkbox1,'Value');
+igsfile=get(handles.edit1,'String');
+srf=get(handles.srf_popupmenu,'Value')-1;
+subd_id=get(handles.subd_popupmenu,'Value');
+
+subd=100;
+switch subd_id
+    case 1
+        subd=50;
+    case 2
+        subd=100;
+    case 3
+        subd=200;
+end
+
+fine_flag=get(handles.fine_flag_popupmenu,'Value')-1;
+
+playIGES(igsfile,isDebugMode,srf,subd,fine_flag);
+
 gui_locker(handles,false);
 
 
@@ -151,13 +167,76 @@ set(handles.edit1,'Enable',activation);
 set(handles.pushbutton1,'Enable',activation);
 set(handles.checkbox1,'Enable',activation);
 set(handles.pushbutton2,'Enable',activation);
+set(handles.srf_popupmenu,'Enable',activation);
+set(handles.subd_popupmenu,'Enable',activation);
+set(handles.fine_flag_popupmenu,'Enable',activation);
 
 
-% --- Executes on selection change in listbox1.
-function listbox1_Callback(hObject, eventdata, handles)
-% hObject    handle to listbox1 (see GCBO)
+% --- Executes on selection change in srf_popupmenu.
+function srf_popupmenu_Callback(hObject, eventdata, handles)
+% hObject    handle to srf_popupmenu (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: contents = cellstr(get(hObject,'String')) returns listbox1 contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from listbox1
+% Hints: contents = cellstr(get(hObject,'String')) returns srf_popupmenu contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from srf_popupmenu
+
+
+% --- Executes during object creation, after setting all properties.
+function srf_popupmenu_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to srf_popupmenu (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on selection change in subd_popupmenu.
+function subd_popupmenu_Callback(hObject, eventdata, handles)
+% hObject    handle to subd_popupmenu (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns subd_popupmenu contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from subd_popupmenu
+
+
+% --- Executes during object creation, after setting all properties.
+function subd_popupmenu_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to subd_popupmenu (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+% --- Executes on selection change in fine_flag_popupmenu.
+function fine_flag_popupmenu_Callback(hObject, eventdata, handles)
+% hObject    handle to fine_flag_popupmenu (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns fine_flag_popupmenu contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from fine_flag_popupmenu
+
+
+% --- Executes during object creation, after setting all properties.
+function fine_flag_popupmenu_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to fine_flag_popupmenu (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end

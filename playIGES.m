@@ -1,4 +1,4 @@
-function playIGES(igsfile,isDebugMode)
+function playIGES(igsfile,isDebugMode,srf,subd,fine_flag)
 global support_read_fcn_types support_read_fcns...
     support_convert_fcn_types support_convert_fcns...
     support_final_calculation_fcn_types support_final_calculation_fcns...
@@ -428,12 +428,11 @@ for i=1:noentII
 end
 fprintf('\n开始绘图\n');
 if printInfo
-    handlePlot=plotIGES(ParameterData, 1, 1, 100, 1, 0, 1, 0, igesEntiallInfo);
+    handlePlot=plotIGES(ParameterData,srf,1,subd,1,fine_flag,1,0,igesEntiallInfo);
 else
-    handlePlot=plotIGES(ParameterData, 1, 1, 100, 1, 0, 1, 0);
+    handlePlot=plotIGES(ParameterData,srf,1,subd,1,fine_flag,1,0);
     
 end
 fprintf('\n绘图完成\n');
-
 
 end
