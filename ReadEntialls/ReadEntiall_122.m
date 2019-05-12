@@ -19,6 +19,10 @@ res.color=[0,0,0];
 
 res.ratio=[0,0];
 
-res.well=false;
-%TODO:×ª»»ÎªNURBSÇúÃæ
+res.isplane=false;
+res.ulinear=0;
+res.vlinear=1;
+
+res.well=true;
+
 end

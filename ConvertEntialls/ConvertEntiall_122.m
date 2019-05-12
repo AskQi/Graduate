@@ -1,5 +1,5 @@
 function [ParameterData,enttyCut]=ConvertEntiall_122(ParameterData,i)
-% 相关资料在国标P
+% 列表柱面，相关资料在国标P98
 
 fprintf('转换类型：%s(%d)\n',thisEntiall.name,thisEntiall.type);
 enttyCut=0;
