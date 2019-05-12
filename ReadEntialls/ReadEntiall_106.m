@@ -39,6 +39,7 @@ res.length=0;
 res.ip=ip;
 res.n=n;
 res.data=data;
+res.form=formNo;
 res.clrnmbr=colorNo;
 res.color=[0,0,0];
 res.trnsfrmtnmtrx=transformationMatrixPtr;
