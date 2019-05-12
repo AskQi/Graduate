@@ -1,7 +1,7 @@
 classdef VertexEntiallUtil
     % 用于处理顶点实体转换为点实体
     methods(Static)
-        function ParameterData = handleVertexEntiallUtil(ParameterData,noent)
+        function [ParameterData,new_noent] = handleVertexEntiallUtil(ParameterData,noent)
             new_noent=noent;
             for i=1:noent
                 if ParameterData{i}.well==0
@@ -28,6 +28,8 @@ classdef VertexEntiallUtil
         function pointEntiall=newPointEntiall(x,y,z,trnsfrmtnmtrx,clrnmbr)
             pointEntiall.type=116;
             pointEntiall.name='点';
+            pointEntiall.previous_type=502;
+            pointEntiall.previous_name='顶点实体';
             pointEntiall.p=[x;y;z];
             pointEntiall.x=x;
             pointEntiall.y=y;

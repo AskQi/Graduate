@@ -375,12 +375,12 @@ if entty(186)>0
 end
 
 % 处理顶点实体，将其转换为一个个点。
-ParameterData=VertexEntiallUtil.handleVertexEntiallUtil(ParameterData,noent);
+[ParameterData,noentII]=VertexEntiallUtil.handleVertexEntiallUtil(ParameterData,noent);
 
 fprintf('\n开始配置实体颜色\n');
 % 修改实体颜色
 mIgesColorUtil=IgesColorUtil(colorMap,defaultColor);
-for i=1:noent
+for i=1:noentII
     if printInfo
         entiallInfo=igesEntiallInfo.getEntiallInfo(ParameterData{i});
     end
@@ -401,7 +401,6 @@ end
 
 fprintf('\n开始计算实体数据\n');
 % 计算length、ratio等参数（最后一步计算）
-noentII=noent;
 for i=1:noentII
     if printInfo
         entiallInfo=igesEntiallInfo.getEntiallInfo(ParameterData{i});
