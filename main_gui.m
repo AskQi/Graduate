@@ -130,6 +130,7 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+clc
 isDebugMode=get(handles.checkbox1,'Value');
 igsfile=get(handles.edit1,'String');
 gui_locker(handles,true);
