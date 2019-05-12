@@ -17,6 +17,11 @@ res.trnsfrmtnmtrx=transformationMatrixPtr;
 res.clrnmbr=colorNo;
 res.color=[0,0,0];
 
-res.well=false;
-%TODO:×ª»»ÎªNURBSÇúÃæ
+res.ratio=[0,0];
+
+res.isplane=false;
+res.ulinear=0;
+res.vlinear=0;
+
+res.well=true;
 end
