@@ -349,7 +349,7 @@ for i=1:noent
         entty(ParameterData{i}.type)=entty(ParameterData{i}.type)+enttyCut;
         if printInfo
             fprintf('类型：%d，名称：%s\n成功转化为NURBS实体\n\n',...
-                ParameterData{entiall}.type,ParameterData{entiall});
+                ParameterData{entiall}.type,ParameterData{entiall}.name);
         end
     end
 end

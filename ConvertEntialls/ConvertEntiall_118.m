@@ -1,7 +1,6 @@
 function [ParameterData,enttyCut]=ConvertEntiall_118(ParameterData,i)
-% 相关资料在国标P
+% 直纹面，相关资料在国标P
 
-fprintf('转换类型：%s(%d)\n',thisEntiall.name,thisEntiall.type);
 enttyCut=0;
 numPnt=301;
 PouterCrv=zeros(3,numPnt);

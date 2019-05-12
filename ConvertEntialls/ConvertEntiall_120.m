@@ -1,7 +1,6 @@
 function [ParameterData,enttyCut]=ConvertEntiall_120(ParameterData,i)
 % 回转曲面，相关资料在国标P97
 
-fprintf('转换类型：%s(%d)\n',thisEntiall.name,thisEntiall.type);
 enttyCut=0;
 CRVclosed=false;
 
