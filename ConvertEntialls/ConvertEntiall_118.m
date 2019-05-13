@@ -136,10 +136,10 @@ CP2(:,2:(numCtrlPnts-1))=(NTN\R)';
 
 ParameterData{i}.type=128;
 
-ParameterData{i}.name='B-NURBS SRF';
+ParameterData{i}.name='B-NURBSÇúÃæ';
 ParameterData{i}.original=0;
 ParameterData{i}.previous_type=118;
-ParameterData{i}.previous_name='RULED SURFACE';
+ParameterData{i}.previous_name='Ö±ÎÆÃæ';
 
 ParameterData{i}.superior=0;
 

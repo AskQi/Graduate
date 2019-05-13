@@ -44,10 +44,10 @@ if boool
     
     ParameterData{i}.type=128;
     
-    ParameterData{i}.name='B-NURBS SRF';
+    ParameterData{i}.name='B-NURBS曲面';
     ParameterData{i}.original=0;
     ParameterData{i}.previous_type=122;
-    ParameterData{i}.previous_name='TABULATED CYLINDER';
+    ParameterData{i}.previous_name='列表柱面';
     
     ParameterData{i}.superior=0;
     

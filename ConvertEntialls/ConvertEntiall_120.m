@@ -91,10 +91,10 @@ if boool
     
     ParameterData{i}.type=128;
     
-    ParameterData{i}.name='B-NURBS SRF';
+    ParameterData{i}.name='B-NURBS曲面';
     ParameterData{i}.original=0;
     ParameterData{i}.previous_type=120;
-    ParameterData{i}.previous_name='SURFACE OF REVOLUTION';
+    ParameterData{i}.previous_name='回转曲面';
     
     ParameterData{i}.superior=0;
     
