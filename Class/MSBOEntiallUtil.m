@@ -106,6 +106,8 @@ classdef MSBOEntiallUtil
                             end
                         end
                     end
+                    
+                    clear thisLineAndEdgeEntiallStruct;
                 end
             end
         end
