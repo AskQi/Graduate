@@ -19,7 +19,7 @@ vz=Pvec(13);
 tt1=Pvec(14);
 tt2=Pvec(15);
 
-%TODO:转换为NURBS曲线
+%TODO:根据原曲面生成新曲面
 
 res.del1=del1;
 res.flag=flag;
