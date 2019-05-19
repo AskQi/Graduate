@@ -432,8 +432,6 @@ if printInfo
     handlePlot=plotIGES(ParameterData,srf,1,subd,1,fine_flag,1,0,igesEntiallInfo);
 else
     handlePlot=plotIGES(ParameterData,srf,1,subd,1,fine_flag,1,0);
-    
 end
 fprintf('\n»æÍ¼Íê³É\n');
-
 end
