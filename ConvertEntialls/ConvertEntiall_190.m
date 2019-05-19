@@ -1,4 +1,4 @@
-function [ParameterData,enttyCut,noentI]=ConvertEntiall_196(ParameterData,i,noentI)
+function [ParameterData,enttyCut,noentI]=ConvertEntiall_190(ParameterData,i,noentI)
 % 平面内曲面实体，在国标P163
 enttyCut=0;
 
