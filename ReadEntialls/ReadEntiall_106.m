@@ -9,8 +9,7 @@ data=Pvec(4,:);
 
 useableForm=[11 12 63];
 if any(formNo==useableForm)
-    % TODO:完成转换
-    switch type
+    switch formNo
         case 11
             res.name='数据块实体（2D路径）';
             res.zt=Pvec(4);
