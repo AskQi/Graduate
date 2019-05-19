@@ -1,4 +1,4 @@
-function [ParameterData,enttyCut]=ConvertEntiall_120(ParameterData,i)
+function [ParameterData,enttyCut,noentI]=ConvertEntiall_120(ParameterData,i,noentI)
 % 回转曲面，相关资料在国标P97
 
 enttyCut=0;

@@ -1,4 +1,4 @@
-function [ParameterData,enttyCut]=ConvertEntiall_118(ParameterData,i)
+function [ParameterData,enttyCut,noentI]=ConvertEntiall_118(ParameterData,i,noentI)
 % 直纹面，相关资料在国标P
 
 enttyCut=0;

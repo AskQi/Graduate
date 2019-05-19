@@ -1,4 +1,4 @@
-function [ParameterData,enttyCut]=ConvertEntiall_122(ParameterData,i)
+function [ParameterData,enttyCut,noentI]=ConvertEntiall_122(ParameterData,i,noentI)
 % 列表柱面，相关资料在国标P98
 
 enttyCut=0;
