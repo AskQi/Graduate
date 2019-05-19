@@ -13,35 +13,41 @@ classdef Entiall19xDrawingUtil
             hold on;
             switch thisEntiall.type
                 case 190
-                    %
+                    % 平面内曲面实体
                 case 192
-                    %
+                    % 正圆柱面实体
                 case 194
-                    %
+                    % 正圆锥面实体
                 case 196
                     % 球面实体，在国标P169
                     deloc=thisEntiall.deloc;
                     x0=deloc(1);y0=deloc(2);z0=deloc(3);
                     r=thisEntiall.radius;
                     [x,y,z]=sphere(50);
-                    
-                    
-                    
+                    xs=r*x-x0;
+                    ys=r*y-y0;
+                    zs=r*z-z0;
                     if srf==1
                         % patch
+                        CO(:,:,1) = ones(size(zs))*clr(1); % red
+                        CO(:,:,2) = ones(size(zs))*clr(2); % green
+                        CO(:,:,3) = ones(size(zs))*clr(3); % blue
                         if fine_flag
-                            hl=patch(r*x-x0,r*y-y0,r*z-z0,'FaceColor',clr,'EdgeColor','none','FaceAlpha',1,'EdgeColor','none','EdgeLighting','none','FaceLighting','phong');
+                            hl=surf(xs,ys,zs,CO);
                         else
-                            hl=patch(r*x-x0,r*y-y0,r*z-z0,'FaceColor',clr,'EdgeColor','none','FaceAlpha',1,'EdgeColor','none','EdgeLighting','none','FaceLighting','gouraud');
+                            hl=surf(r*x-x0,r*y-y0,r*z-z0,CO);
                         end
                         
                     elseif srf==2
                         % mesh
-                        hl=patch(r*x-x0,r*y-y0,r*z-z0,'FaceColor','none','EdgeColor','b');
+                        CO(:,:,1) = zeros(size(zs)); % red
+                        CO(:,:,2) = zeros(size(zs)); % green
+                        CO(:,:,3) = ones(size(zs)); % blue
+                        hl=mesh(r*x-x0,r*y-y0,r*z-z0,CO);
                     end
                     
                 case 198
-                    %
+                    % 圆环面实体
                     
             end
         end
