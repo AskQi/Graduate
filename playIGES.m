@@ -336,6 +336,7 @@ end
 
 % 将其他类型实体转换为NURBS实体
 fprintf('\n开始处理实体类型转换\n');
+noentI=noent;
 for i=1:noent
     if ParameterData{i}.well==0
         continue;
@@ -345,7 +346,7 @@ for i=1:noent
     if position>0
         % 该类型需要转换
         thisFcn=support_convert_fcns{position};
-        [ParameterData,enttyCut]=thisFcn(ParameterData,i);
+        [ParameterData,enttyCut,noentI]=thisFcn(ParameterData,i,noentI);
         entty(ParameterData{i}.type)=entty(ParameterData{i}.type)+enttyCut;
         if printInfo
             fprintf('类型：%d，名称：%s\n成功转化为NURBS实体\n\n',...
@@ -353,7 +354,7 @@ for i=1:noent
         end
     end
 end
-
+noent=noentI;
 % 处理偏置曲面
 if offsetsurfaceExists
     fprintf('\n开始处理偏置曲面\n');
