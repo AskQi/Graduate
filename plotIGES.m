@@ -140,7 +140,6 @@ if fignr>0
     figure(fignr),hold on
 end
 
-
 if nargout>0
     
     handlePlot=cell(1,3);
@@ -157,6 +156,15 @@ if nargout>0
                 entiallInfo=igesEntiallInfo.getEntiallInfo(ParameterData{i});
                 fprintf('正在绘制：%s\n',entiallInfo);
             end
+        end
+        if any(ParameterData{i}.type==Entiall19xDrawingUtil.support_19x_types)
+            %19x使用自定义绘制
+            if not(usrDefClr)
+                clr(:)=ParameterData{i}.color;
+            end
+            hl=Entiall19xDrawingUtil.drawing(ParameterData{i},srf,clr,fine_flag);
+            handlePlot{1}=[handlePlot{1},hl];
+            continue;
         end
         [P,isSCP,isSup]=retSrfCrvPnt(2,ParameterData,1,i,subd,3);
         
