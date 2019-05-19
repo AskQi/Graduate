@@ -7,11 +7,14 @@ res.original=1;
 res.superior=1;
 
 res.form=formNo;
-
+% 中心点的DE指针
 res.deloc=Pvec(2);
+% 半径
 res.radius=Pvec(3);
 if formNo==1
+    %指向轴向的DE的指针
     res.deaxis=Pvec(4);
+    %指向参考方向的DE的指针
     res.defefd=Pvec(5);
 end
 

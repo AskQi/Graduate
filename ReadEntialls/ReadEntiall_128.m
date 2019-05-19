@@ -76,7 +76,7 @@ res.vlinear=vlinear;
 res.nurbs.form='B-NURBS';
 
 res.nurbs.dim=4;
-
+%两个和的上标
 res.nurbs.number=zeros(1,2);
 res.nurbs.number(1)=Pvec(2)+1;
 res.nurbs.number(2)=Pvec(3)+1;
@@ -91,6 +91,7 @@ res.nurbs.knots=cell(1,2);
 res.nurbs.knots{1}=Pvec(11:(11+A));
 res.nurbs.knots{2}=Pvec((12+A):(12+A+B));
 
+%两组基函数的阶
 res.nurbs.order=zeros(1,2);
 res.nurbs.order(1)=Pvec(4)+1;
 res.nurbs.order(2)=Pvec(5)+1;
