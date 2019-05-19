@@ -20,8 +20,10 @@ classdef Entiall19xDrawingUtil
                     % 正圆锥面实体
                 case 196
                     % 球面实体，在国标P169
-                    deloc=thisEntiall.deloc;
-                    x0=deloc(1);y0=deloc(2);z0=deloc(3);
+                    % 球心
+                    p=thisEntiall.p;
+                    x0=p(1);y0=p(2);z0=p(3);
+                    %半径
                     r=thisEntiall.radius;
                     [x,y,z]=sphere(50);
                     xs=r*x-x0;
