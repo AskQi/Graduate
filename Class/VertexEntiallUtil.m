@@ -16,7 +16,7 @@ classdef VertexEntiallUtil
                         y=thisVertexEntiall.y;
                         z=thisVertexEntiall.z;
                         trnsfrmtnmtrx=thisEntiall.trnsfrmtnmtrx;
-                        clrnmbr=thisVertexEntiall.clrnmbr;
+                        clrnmbr=thisEntiall.clrnmbr;
                         pointEntiall=VertexEntiallUtil.newPointEntiall...
                             (x,y,z,trnsfrmtnmtrx,clrnmbr);
                         new_noent=new_noent+1;
