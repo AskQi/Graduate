@@ -15,10 +15,27 @@ classdef Entiall19xDrawingUtil
                 case 190
                     % 平面内曲面实体
                 case 192
-                    % 正圆柱面实体
+                    % 正圆柱面实体，在国标P165
+                    %轴经过的两点
+                    p1=thisEntiall.p1;
+                    p2=thisEntiall.p2;
+                    %大小半径
+                    radius=thisEntiall.radius;
+                    
+                    R=radius;%半径
+                    a=0;%原点x坐标
+                    b=0;%原点y坐标
+                    h=2;%圆柱高度
+                    m=100;%分割线的条数
+                    [x,y,z]=cylinder(R,m);%创建以(0,0)为圆心，高度为[0,1]，半径为R的圆柱
+                    X=x+a;%平移x轴
+                    Y=y+b;%平移y轴，改为(a,b)为底圆的圆心
+                    Z=h*z;%高度放大h倍
+                    
+                    hl = painting(X,Y,Z,srf,clr,fine_flag);
                 case 194
                     % 正圆锥面实体，在国标P167
-                    % 环心
+                    % 顶点
                     p=thisEntiall.p;
                     x0=p(1);y0=p(2);z0=p(3);
                     %轴经过的两点
@@ -29,10 +46,9 @@ classdef Entiall19xDrawingUtil
                     radius=thisEntiall.radius;
                     
                     t = 0 :0.01:tan(sangle/180*pi);%由于tan(25/180*pi)=tan25°.可以任意改变角度
-                    
                     [X,Y,Z] = cylinder(t);
                     
-                    surf(X,Y,Z);
+                    hl = painting(X,Y,Z,srf,clr,fine_flag);
                 case 196
                     % 球面实体，在国标P169
                     % 球心
