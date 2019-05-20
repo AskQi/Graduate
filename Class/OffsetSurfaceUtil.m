@@ -1,17 +1,6 @@
 classdef OffsetSurfaceUtil
     %OFFSETSURFACEUTIL 处理偏置曲面的类
-    
-    properties
-        
-    end
-    
-    methods
-        function obj = OffsetSurfaceUtil()
-            %OFFSETSURFACEUTIL 构造此类的实例
-            %   此处显示详细说明
-            
-        end
-    end
+
     methods(Static)
         function ParameterData = handleOffsetSurface(ParameterData,i)
             %handleOffsetSurface 处理偏置曲面
