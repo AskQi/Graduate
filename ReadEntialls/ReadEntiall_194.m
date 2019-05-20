@@ -10,9 +10,9 @@ res.form=formNo;
 
 res.deloc=Pvec(2);
 res.deaxis=Pvec(3);
-if formNo==0
-    res.radius=Pvec(4);
-elseif formNo==1
+res.radius=Pvec(4);
+
+if formNo==1
     res.sangle=Pvec(4);
 end
 res.derefd=Pvec(5);
