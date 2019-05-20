@@ -2,7 +2,7 @@ function [res]=ReadEntiall_190(Pstr,Pvec,type,colorNo,formNo,transformationMatri
 % 平面内曲面实体，在国标P163
 res.type=type;
 
-res.name='平面内曲面实体';
+res.name='平面实体';
 res.original=1;
 res.superior=1;
 
