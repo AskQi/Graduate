@@ -149,9 +149,11 @@ switch subd_id
 end
 
 fine_flag=get(handles.fine_flag_popupmenu,'Value')-1;
-
-playIGES(igsfile,isDebugMode,srf,subd,fine_flag);
-
+try
+    playIGES(igsfile,isDebugMode,srf,subd,fine_flag);
+catch exception
+    disp(exception.identifier);
+end
 gui_locker(handles,false);
 
 
