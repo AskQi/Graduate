@@ -13,7 +13,25 @@ classdef Entiall19xDrawingUtil
             hold on;
             switch thisEntiall.type
                 case 190
-                    % 平面内曲面实体
+                    % 平面实体
+                    % 平面内一点
+                    p=thisEntiall.p;
+                    x0=p(1);y0=p(2);z0=p(3);
+                    % 轴经过的两点
+                    p1=thisEntiall.p1;
+                    p2=thisEntiall.p2;
+                    % 法向量
+                    n=p2-p1;
+                    A=n(1);B=n(2);C=n(3);
+                    if fine_flag
+                       space=0.1;
+                    else
+                       space=0.5;
+                    end
+                    [X,Y]=meshgrid(-5:space:5);
+                    Z=z0-A/C*(X-x0)-B/C*(Y-y0);
+                    hl = painting(X,Y,Z,srf,clr,fine_flag);
+                    
                 case 192
                     % 正圆柱面实体，在国标P165
                     %轴经过的两点
