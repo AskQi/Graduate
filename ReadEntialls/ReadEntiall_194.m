@@ -11,11 +11,11 @@ res.form=formNo;
 res.deloc=Pvec(2);
 res.deaxis=Pvec(3);
 res.radius=Pvec(4);
-
+res.sangle=Pvec(5);
+% 国标中有错误，此处参考V6
 if formNo==1
-    res.sangle=Pvec(4);
+    res.derefd=Pvec(6);
 end
-res.derefd=Pvec(5);
 
 res.clrnmbr=colorNo;
 res.color=[0,0,0];
