@@ -49,7 +49,7 @@ sumPfind=sum(Pfind);
 sumTfind=sum(Tfind);
 
 %用于处理偏置曲面
-offsetsurfaceExists=false;
+offsetExists=false;
 %用于处理变换矩阵
 transformationExists=false;
 mat3x3=zeros(3);
@@ -296,8 +296,10 @@ for i=startD:2:endD
         ParameterData{entiall}=thisFcn(Pstr,Pvec,type,colorNo,formNo,transformationMatrixPtr);
         if ParameterData{entiall}.type==124
             transformationExists=true;
+        elseif ParameterData{entiall}.type==130
+            offsetExists=true;
         elseif ParameterData{entiall}.type==140
-            offsetsurfaceExists=true;
+            offsetExists=true;
         elseif ParameterData{entiall}.type==186
             indexOfMSBOEntty=[indexOfMSBOEntty,entiall];
         elseif ParameterData{entiall}.type==314
@@ -355,10 +357,13 @@ for i=1:noent
     end
 end
 noent=noentI;
-% 处理偏置曲面
-if offsetsurfaceExists
-    fprintf('\n开始处理偏置曲面\n');
+% 处理偏置曲线和曲面
+if offsetExists
+    fprintf('\n开始处理偏置曲线和曲面\n');
     for i=1:noent
+        if ParameterData{i}.type==130
+            ParameterData=OffsetLineUtil.handleOffsetLine(ParameterData,i);
+        end
         if ParameterData{i}.type==140
             ParameterData=OffsetSurfaceUtil.handleOffsetSurface(ParameterData,i);
         end
