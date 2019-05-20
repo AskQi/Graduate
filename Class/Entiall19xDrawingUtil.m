@@ -71,9 +71,9 @@ classdef Entiall19xDrawingUtil
         end
         
         function hl = painting(X,Y,Z,srf,clr,fine_flag)
-            CO(:,:,1) = ones(size(zs))*clr(1); % red
-            CO(:,:,2) = ones(size(zs))*clr(2); % green
-            CO(:,:,3) = ones(size(zs))*clr(3); % blue
+            CO(:,:,1) = ones(size(Z))*clr(1); % red
+            CO(:,:,2) = ones(size(Z))*clr(2); % green
+            CO(:,:,3) = ones(size(Z))*clr(3); % blue
             if srf==1
                 % patch
                 if fine_flag
