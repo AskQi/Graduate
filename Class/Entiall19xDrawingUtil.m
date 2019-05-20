@@ -17,7 +17,22 @@ classdef Entiall19xDrawingUtil
                 case 192
                     % 正圆柱面实体
                 case 194
-                    % 正圆锥面实体
+                    % 正圆锥面实体，在国标P167
+                    % 环心
+                    p=thisEntiall.p;
+                    x0=p(1);y0=p(2);z0=p(3);
+                    %轴经过的两点
+                    p1=thisEntiall.p1;
+                    p2=thisEntiall.p2;
+                    %大小半径
+                    sangle=thisEntiall.sangle;
+                    radius=thisEntiall.radius;
+                    
+                    t = 0 :0.01:tan(sangle/180*pi);%由于tan(25/180*pi)=tan25°.可以任意改变角度
+                    
+                    [X,Y,Z] = cylinder(t);
+                    
+                    surf(X,Y,Z);
                 case 196
                     % 球面实体，在国标P169
                     % 球心
