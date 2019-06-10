@@ -6,7 +6,7 @@ isDebugMode=1;
 
 if isDebugMode
     % 加载要绘制的实体，测试时取消注释
-    igsfile = 'IGESfiles/pointwise.iges';
+    igsfile = 'C:\Users\QiDa\Desktop\自由女神维纳斯.igs';
     printInfo=true;
 else
     printInfo=false;
@@ -27,4 +27,4 @@ else
 end
 
 
-playIGES(igsfile,isDebugMode,1,100,0);
+h=playIGES(igsfile,isDebugMode,1,100,0);
